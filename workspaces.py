@@ -68,6 +68,7 @@ class WorkspacesPage(QWidget):
         
         # Right side: New Workspace button
         new_btn = QPushButton("+ New Workspace")
+        new_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         new_btn.setStyleSheet("""
             QPushButton {
                 background-color: #007AFF;
@@ -120,6 +121,7 @@ class WorkspacesPage(QWidget):
     
     def create_category_button(self, name, active, count):
         btn = QPushButton(f"  {name} {count}")
+        btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         
         # Map category names to icon files
         icon_map = {
@@ -214,6 +216,7 @@ class WorkspacesPage(QWidget):
         
         # Action buttons
         edit_btn = QPushButton()
+        edit_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             edit_btn.setIcon(QIcon("edit.svg"))
             edit_btn.setIconSize(QSize(16, 16))
@@ -236,6 +239,7 @@ class WorkspacesPage(QWidget):
         edit_btn.setFixedSize(36, 36)
         
         delete_btn = QPushButton()
+        delete_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             delete_btn.setIcon(QIcon("trash.svg"))
             delete_btn.setIconSize(QSize(16, 16))
@@ -258,6 +262,7 @@ class WorkspacesPage(QWidget):
         delete_btn.setFixedSize(36, 36)
         
         launch_btn = QPushButton("▶ Launch")
+        launch_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         launch_btn.setStyleSheet("""
             QPushButton {
                 background-color: #007AFF;

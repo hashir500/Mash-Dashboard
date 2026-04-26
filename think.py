@@ -71,6 +71,7 @@ class ThinkPage(QWidget):
         right_layout.setSpacing(8)
         
         filter_btn = QPushButton()
+        filter_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             filter_btn.setIcon(QIcon("filter.svg"))
             filter_btn.setIconSize(QSize(20, 20))
@@ -89,6 +90,7 @@ class ThinkPage(QWidget):
         filter_btn.setFixedSize(32, 32)
         
         search_btn = QPushButton()
+        search_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             search_btn.setIcon(QIcon("search.svg"))
             search_btn.setIconSize(QSize(20, 20))
@@ -132,6 +134,7 @@ class ThinkPage(QWidget):
         
         for text, active, icon_path in chips:
             chip = QPushButton(text)
+            chip.setFocusPolicy(Qt.FocusPolicy.NoFocus)
             if active:
                 chip.setStyleSheet("""
                     QPushButton {
@@ -312,6 +315,7 @@ class ThinkPage(QWidget):
         
         # Paperclip icon
         paperclip_btn = QPushButton()
+        paperclip_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             paperclip_btn.setIcon(QIcon("paperclip.svg"))
             paperclip_btn.setIconSize(QSize(20, 20))

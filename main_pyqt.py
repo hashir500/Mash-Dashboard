@@ -10,6 +10,7 @@ from think import ThinkPage
 from schedule import SchedulePage
 from workspaces import WorkspacesPage
 from habits import HabitsPage
+from screentime import ScreenTimePage
 
 
 class TitleBar(QWidget):
@@ -581,7 +582,7 @@ class NavigationBar(QWidget):
             ("layers.svg", False, "workspaces"),
             ("brain.svg", False, "think"),
             ("flame.svg", False, "habits"),
-            ("chart.svg", False, None)
+            ("chart.svg", False, "screentime")
         ]
         
         for icon_path, active, page_name in icons:
@@ -743,6 +744,9 @@ class MainWindow(QMainWindow):
         # Habits page
         self.habits_page = HabitsPage()
         
+        # Screen Time page
+        self.screentime_page = ScreenTimePage()
+        
         # Add pages to stacked widget
         self.stacked_widget.addWidget(self.dashboard_page)
         self.stacked_widget.addWidget(self.tasks_page)
@@ -750,6 +754,7 @@ class MainWindow(QMainWindow):
         self.stacked_widget.addWidget(self.schedule_page)
         self.stacked_widget.addWidget(self.workspaces_page)
         self.stacked_widget.addWidget(self.habits_page)
+        self.stacked_widget.addWidget(self.screentime_page)
         
         # Set dashboard as default
         self.stacked_widget.setCurrentWidget(self.dashboard_page)
@@ -785,6 +790,9 @@ class MainWindow(QMainWindow):
         elif page_name == "habits":
             self.stacked_widget.setCurrentWidget(self.habits_page)
             self.current_page = "habits"
+        elif page_name == "screentime":
+            self.stacked_widget.setCurrentWidget(self.screentime_page)
+            self.current_page = "screentime"
         
         # Update navigation bar active state
         self.nav_bar.set_active_page(page_name)

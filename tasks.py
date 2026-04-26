@@ -37,6 +37,7 @@ class TabNavigation(QWidget):
         
         for tab_name, active in tabs:
             btn = QPushButton(tab_name)
+            btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
             if active:
                 btn.setStyleSheet("""
                     QPushButton {
@@ -97,6 +98,7 @@ class TaskInput(QWidget):
         
         # Plus icon
         plus_btn = QPushButton()
+        plus_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             plus_btn.setIcon(QIcon("plus.svg"))
             plus_btn.setIconSize(QSize(20, 20))
@@ -226,6 +228,7 @@ class TaskItem(QWidget):
         
         # Edit icon (hidden by default, shown on hover)
         edit_btn = QPushButton()
+        edit_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             edit_btn.setIcon(QIcon("edit.svg"))
             edit_btn.setIconSize(QSize(16, 16))

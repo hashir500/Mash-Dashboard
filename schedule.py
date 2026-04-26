@@ -51,6 +51,7 @@ class SchedulePage(QWidget):
         
         # Left arrow
         left_arrow = QPushButton()
+        left_arrow.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             left_arrow.setIcon(QIcon("chevron-left.svg"))
             left_arrow.setIconSize(QSize(20, 20))
@@ -99,6 +100,7 @@ class SchedulePage(QWidget):
         
         # Right arrow
         right_arrow = QPushButton()
+        right_arrow.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             right_arrow.setIcon(QIcon("chevron-right.svg"))
             right_arrow.setIconSize(QSize(20, 20))
@@ -146,13 +148,14 @@ class SchedulePage(QWidget):
         
         # Day button (active)
         day_btn = QPushButton("Day")
+        day_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         day_btn.setStyleSheet("""
             QPushButton {
                 background-color: #007AFF;
                 color: #ffffff;
                 border: none;
-                padding: 8px 20px;
                 border-radius: 6px;
+                padding: 6px 16px;
                 font-size: 13px;
                 font-weight: 500;
             }
@@ -160,13 +163,14 @@ class SchedulePage(QWidget):
         
         # Week button (inactive)
         week_btn = QPushButton("Week")
+        week_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         week_btn.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
                 color: #888888;
                 border: none;
-                padding: 8px 20px;
                 border-radius: 6px;
+                padding: 6px 16px;
                 font-size: 13px;
                 font-weight: 500;
             }

@@ -65,6 +65,7 @@ class HabitsPage(QWidget):
         # Right side: + button
         add_btn = QPushButton("+")
         add_btn.setFixedSize(40, 40)
+        add_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         add_btn.setStyleSheet("""
             QPushButton {
                 background-color: #007AFF;
@@ -124,13 +125,7 @@ class HabitsPage(QWidget):
         # Icon
         icon_label = QLabel()
         icon_label.setFixedSize(32, 32)
-        try:
-            icon_label.setPixmap(QIcon(icon_path).pixmap(24, 24))
-            colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(QColor(color))
-            icon_label.setGraphicsEffect(colorize_effect)
-        except:
-            icon_label.setText("")
+        icon_label.setPixmap(QIcon(icon_path).pixmap(24, 24))
         icon_label.setStyleSheet("border: none; background: transparent;")
         
         # Title
@@ -167,6 +162,7 @@ class HabitsPage(QWidget):
         
         # Did it button (colored)
         did_it_btn = QPushButton("✓ Did it")
+        did_it_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         did_it_btn.setStyleSheet(f"""
             QPushButton {{
                 background-color: {color}33;
@@ -183,6 +179,7 @@ class HabitsPage(QWidget):
         
         # Other buttons (gray glass)
         snooze_btn = QPushButton("⏱ Snooze")
+        snooze_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         snooze_btn.setStyleSheet("""
             QPushButton {
                 background-color: rgba(255, 255, 255, 0.1);
@@ -199,6 +196,7 @@ class HabitsPage(QWidget):
         """)
         
         skip_btn = QPushButton("▷ Skip")
+        skip_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         skip_btn.setStyleSheet("""
             QPushButton {
                 background-color: rgba(255, 255, 255, 0.1);
@@ -215,6 +213,7 @@ class HabitsPage(QWidget):
         """)
         
         reschedule_btn = QPushButton("↻ Reschedule")
+        reschedule_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         reschedule_btn.setStyleSheet("""
             QPushButton {
                 background-color: rgba(255, 255, 255, 0.1);
@@ -272,6 +271,7 @@ class HabitsPage(QWidget):
         
         # Left arrow
         left_arrow = QPushButton()
+        left_arrow.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             left_arrow.setIcon(QIcon("chevron-left.svg"))
             left_arrow.setIconSize(QSize(20, 20))
@@ -308,6 +308,7 @@ class HabitsPage(QWidget):
         
         # Right arrow
         right_arrow = QPushButton()
+        right_arrow.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
             right_arrow.setIcon(QIcon("chevron-right.svg"))
             right_arrow.setIconSize(QSize(20, 20))
@@ -481,13 +482,10 @@ class HabitsPage(QWidget):
         
         icon_label = QLabel()
         icon_label.setStyleSheet("border: none; background: transparent;")
-        try:
-            icon_label.setPixmap(QIcon(icon_path).pixmap(18, 18))
-            colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(QColor(color))
-            icon_label.setGraphicsEffect(colorize_effect)
-        except:
-            icon_label.setText("•")
+        icon_label.setPixmap(QIcon(icon_path).pixmap(20, 20))
+        colorize_effect = QGraphicsColorizeEffect()
+        colorize_effect.setColor(Qt.GlobalColor.white)
+        icon_label.setGraphicsEffect(colorize_effect)
         
         icon_layout.addWidget(icon_label)
         
