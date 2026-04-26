@@ -1,0 +1,25 @@
+# Environments
+venv/
+env/
+.env
+
+# Python byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code workspace settings (optional, but recommended)
+.vscode/
+
+# PyQt specific (if you start compiling UI/resource files later)
+*_rc.py
+*.ui
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
