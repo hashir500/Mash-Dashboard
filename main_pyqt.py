@@ -1,9 +1,11 @@
 import sys
 from datetime import datetime
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
-                             QHBoxLayout, QLabel, QPushButton, QFrame, QSizePolicy)
+                             QHBoxLayout, QLabel, QPushButton, QFrame, QSizePolicy,
+                             QGraphicsColorizeEffect, QSpacerItem, QStackedWidget)
 from PyQt6.QtCore import Qt, QPoint, QSize
 from PyQt6.QtGui import QIcon, QPainter, QColor, QPen, QFont
+from tasks import TasksPage
 
 
 class TitleBar(QWidget):
@@ -20,19 +22,6 @@ class TitleBar(QWidget):
         layout.setContentsMargins(16, 8, 16, 8)
         layout.setSpacing(12)
         
-        # Traffic lights
-        traffic_lights = QHBoxLayout()
-        traffic_lights.setSpacing(8)
-        
-        self.close_btn = self.create_traffic_light("#ff5f56", self.close_window)
-        self.minimize_btn = self.create_traffic_light("#ffbd2e", self.show_minimized)
-        self.maximize_btn = self.create_traffic_light("#27c93f", self.toggle_maximize)
-        
-        traffic_lights.addWidget(self.close_btn)
-        traffic_lights.addWidget(self.minimize_btn)
-        traffic_lights.addWidget(self.maximize_btn)
-        
-        layout.addLayout(traffic_lights)
         layout.addStretch()
         
         # Status indicator
@@ -49,39 +38,53 @@ class TitleBar(QWidget):
         """)
         
         status_label = QLabel("Mash")
-        status_label.setStyleSheet("color: #ffffff; font-size: 13px; font-weight: 500;")
+        status_label.setStyleSheet("color: #ffffff; font-size: 13px; font-weight: 500; border: none; background: transparent;")
         
         settings_btn = QPushButton()
-        settings_btn.setText("⚙")
+        try:
+            settings_btn.setIcon(QIcon("settings.svg"))
+            settings_btn.setIconSize(QSize(18, 18))
+            # Colorize icon to white
+            colorize_effect = QGraphicsColorizeEffect()
+            colorize_effect.setColor(Qt.GlobalColor.white)
+            settings_btn.setGraphicsEffect(colorize_effect)
+        except:
+            settings_btn.setText("⚙")
         settings_btn.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
-                color: #888888;
                 border: none;
-                font-size: 14px;
                 padding: 4px;
+                border-radius: 4px;
             }
             QPushButton:hover {
-                color: #ffffff;
+                background-color: rgba(255, 255, 255, 0.1);
             }
         """)
-        settings_btn.setFixedSize(24, 24)
+        settings_btn.setFixedSize(28, 28)
         
         expand_btn = QPushButton()
-        expand_btn.setText("⤢")
+        try:
+            expand_btn.setIcon(QIcon("expand.svg"))
+            expand_btn.setIconSize(QSize(18, 18))
+            # Colorize icon to white
+            colorize_effect = QGraphicsColorizeEffect()
+            colorize_effect.setColor(Qt.GlobalColor.white)
+            expand_btn.setGraphicsEffect(colorize_effect)
+        except:
+            expand_btn.setText("⤢")
         expand_btn.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
-                color: #888888;
                 border: none;
-                font-size: 14px;
                 padding: 4px;
+                border-radius: 4px;
             }
             QPushButton:hover {
-                color: #ffffff;
+                background-color: rgba(255, 255, 255, 0.1);
             }
         """)
-        expand_btn.setFixedSize(24, 24)
+        expand_btn.setFixedSize(28, 28)
         
         cmd_badge = QLabel("⌘ K")
         cmd_badge.setStyleSheet("""
@@ -91,6 +94,7 @@ class TitleBar(QWidget):
                 padding: 4px 8px;
                 border-radius: 4px;
                 font-size: 11px;
+                border: none;
             }
         """)
         
@@ -102,22 +106,37 @@ class TitleBar(QWidget):
         
         layout.addLayout(status_layout)
         
+        # Windows-style window controls
+        window_controls = QHBoxLayout()
+        window_controls.setSpacing(4)
+        
+        self.minimize_btn = self.create_window_button("─", self.show_minimized)
+        self.maximize_btn = self.create_window_button("□", self.toggle_maximize)
+        self.close_btn = self.create_window_button("✕", self.close_window)
+        
+        window_controls.addWidget(self.minimize_btn)
+        window_controls.addWidget(self.maximize_btn)
+        window_controls.addWidget(self.close_btn)
+        
+        layout.addLayout(window_controls)
+        
         self.parent_window = parent
         self.start_pos = QPoint()
         
-    def create_traffic_light(self, color, callback):
-        btn = QPushButton()
-        btn.setFixedSize(12, 12)
-        btn.setStyleSheet(f"""
-            QPushButton {{
-                background-color: {color};
-                border-radius: 6px;
+    def create_window_button(self, symbol, callback):
+        btn = QPushButton(symbol)
+        btn.setFixedSize(30, 30)
+        btn.setStyleSheet("""
+            QPushButton {
+                background-color: transparent;
+                color: #ffffff;
                 border: none;
-            }}
-            QPushButton:hover {{
-                background-color: {color};
-                opacity: 0.8;
-            }}
+                font-size: 16px;
+                font-weight: normal;
+            }
+            QPushButton:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
         """)
         btn.clicked.connect(callback)
         return btn
@@ -162,12 +181,12 @@ class Header(QWidget):
         time_layout = QHBoxLayout()
         time_layout.setSpacing(6)
         
-        clock_label = QLabel("🕐")
-        clock_label.setStyleSheet("font-size: 14px;")
+        clock_label = QLabel("")
+        clock_label.setStyleSheet("font-size: 14px; border: none; background: transparent;")
         
         current_time = datetime.now().strftime("%I:%M %p")
         time_label = QLabel(current_time)
-        time_label.setStyleSheet("color: #888888; font-size: 18px;")
+        time_label.setStyleSheet("color: #888888; font-size: 18px; border: none; background: transparent;")
         
         time_layout.addWidget(clock_label)
         time_layout.addWidget(time_label)
@@ -190,6 +209,8 @@ class Header(QWidget):
                 color: #ffffff;
                 font-size: 36px;
                 font-weight: bold;
+                border: none;
+                background: transparent;
             }
         """)
         
@@ -215,6 +236,8 @@ class Timeline(QWidget):
                 font-size: 16px;
                 font-weight: 600;
                 letter-spacing: 1px;
+                border: none;
+                background: transparent;
             }
         """)
         
@@ -225,6 +248,8 @@ class Timeline(QWidget):
                 font-size: 13px;
                 font-weight: 500;
                 letter-spacing: 1px;
+                border: none;
+                background: transparent;
             }
         """)
         
@@ -242,35 +267,38 @@ class Timeline(QWidget):
         
         # Track with blocks container
         track_container = QWidget()
-        track_container.setFixedHeight(45)
+        track_container.setFixedHeight(100)
         track_container.setStyleSheet("""
             QWidget {
-                background-color: #2a2a2a;
-                border-radius: 22px;
+                background-color: rgba(30, 30, 30, 0.6);
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.08);
             }
         """)
         
         track_container_layout = QHBoxLayout(track_container)
-        track_container_layout.setContentsMargins(6, 6, 6, 6)
-        track_container_layout.setSpacing(4)
+        track_container_layout.setContentsMargins(0, 0, 0, 0)
+        track_container_layout.setSpacing(0)
         
-        # Blue block (Deep work) with text
-        blue_block = self.create_timeline_block("Deep work", "#007AFF", 120)
+        # 6am to 9am spacer (3 hours = 300px total, but this is empty)
+        track_container_layout.addSpacing(0)
+        
+        # Blue block (Deep work 9am-12pm = 3 hours = 300px)
+        blue_block = self.create_timeline_block("Deep work", "rgba(64, 169, 255, 0.25)", 300)
         track_container_layout.addWidget(blue_block)
         
-        # Spacer
-        track_container_layout.addStretch()
+        # 12pm to 1pm spacer (1 hour = 100px)
+        track_container_layout.addSpacing(100)
         
-        # Gray block (empty)
-        gray_block = self.create_timeline_block("", "#3a3a3a", 80)
-        track_container_layout.addWidget(gray_block)
-        
-        # Orange block (Bug fixes) with text
-        orange_block = self.create_timeline_block("Bug fixes", "#FF9500", 100)
+        # Orange block (Bug fixes 2pm-3:30pm = 1.5 hours = 150px)
+        orange_block = self.create_timeline_block("Bug fixes", "rgba(255, 159, 10, 0.25)", 150)
         track_container_layout.addWidget(orange_block)
         
-        # Green block with text
-        green_block = self.create_timeline_block("Docs", "#34C759", 80)
+        # 3:30pm to 4pm spacer (0.5 hour = 50px)
+        track_container_layout.addSpacing(50)
+        
+        # Green block (Docs 4pm-5pm = 1 hour = 100px)
+        green_block = self.create_timeline_block("Docs", "rgba(48, 209, 88, 0.25)", 100)
         track_container_layout.addWidget(green_block)
         
         track_container_layout.addStretch()
@@ -279,7 +307,7 @@ class Timeline(QWidget):
         
         # Red current time indicator (overlay)
         current_time_indicator = QFrame()
-        current_time_indicator.setFixedSize(2, 45)
+        current_time_indicator.setFixedSize(2, 100)
         current_time_indicator.setStyleSheet("""
             QFrame {
                 background-color: #FF3B30;
@@ -294,10 +322,10 @@ class Timeline(QWidget):
         time_labels = QHBoxLayout()
         time_labels.setSpacing(0)
         
-        times = ["6a", "9a", "12p", "3p", "6p", "9p"]
+        times = ["6am", "9am", "12pm", "3pm", "6pm", "9pm"]
         for time in times:
             label = QLabel(time)
-            label.setStyleSheet("color: #666666; font-size: 12px;")
+            label.setStyleSheet("color: #666666; font-size: 12px; border: none; background: transparent;")
             time_labels.addWidget(label)
             time_labels.addStretch()
         
@@ -307,11 +335,13 @@ class Timeline(QWidget):
     
     def create_timeline_block(self, text, color, width):
         block = QFrame()
-        block.setFixedSize(width, 33)
+        block.setMinimumWidth(width)
+        block.setFixedHeight(100)
         block.setStyleSheet(f"""
             QFrame {{
                 background-color: {color};
-                border-radius: 16px;
+                border: 1px solid {color.replace('0.25', '0.5')};
+                border-radius: 12px;
             }}
         """)
         
@@ -326,6 +356,8 @@ class Timeline(QWidget):
                     color: #ffffff;
                     font-size: 11px;
                     font-weight: 600;
+                    border: none;
+                    background: transparent;
                 }
             """)
             label.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -353,11 +385,12 @@ class StatCards(QWidget):
     
     def create_card(self, subtitle, main_text):
         card = QFrame()
-        card.setMinimumHeight(100)
+        card.setMinimumHeight(120)
         card.setStyleSheet("""
             QFrame {
-                background-color: #2b2b2b;
+                background-color: rgba(255, 255, 255, 0.05);
                 border-radius: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.08);
             }
         """)
         
@@ -371,6 +404,8 @@ class StatCards(QWidget):
                 color: #888888;
                 font-size: 14px;
                 font-weight: 500;
+                border: none;
+                background: transparent;
             }
         """)
         
@@ -380,6 +415,8 @@ class StatCards(QWidget):
                 color: #ffffff;
                 font-size: 32px;
                 font-weight: bold;
+                border: none;
+                background: transparent;
             }
         """)
         
@@ -392,17 +429,21 @@ class StatCards(QWidget):
 class ScheduleItem(QWidget):
     def __init__(self, title, time_range, color, parent=None):
         super().__init__(parent)
-        self.setFixedHeight(70)
-        self.setStyleSheet("""
-            QWidget {
-                background-color: #2b2b2b;
-                border-radius: 12px;
+        self.setStyleSheet("background-color: transparent;")
+        
+        # Create wrapper frame for glassmorphic background
+        wrapper = QFrame()
+        wrapper.setStyleSheet("""
+            QFrame {
+                background-color: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
             }
         """)
         
-        layout = QHBoxLayout(self)
-        layout.setContentsMargins(15, 15, 15, 15)
-        layout.setSpacing(15)
+        wrapper_layout = QHBoxLayout(wrapper)
+        wrapper_layout.setContentsMargins(15, 15, 15, 15)
+        wrapper_layout.setSpacing(15)
         
         # Color indicator
         indicator = QFrame()
@@ -424,6 +465,8 @@ class ScheduleItem(QWidget):
                 color: #ffffff;
                 font-size: 16px;
                 font-weight: 500;
+                border: none;
+                background: transparent;
             }
         """)
         
@@ -432,6 +475,8 @@ class ScheduleItem(QWidget):
             QLabel {
                 color: #888888;
                 font-size: 14px;
+                border: none;
+                background: transparent;
             }
         """)
         
@@ -445,13 +490,20 @@ class ScheduleItem(QWidget):
                 color: #444444;
                 font-size: 18px;
                 font-weight: bold;
+                border: none;
+                background: transparent;
             }
         """)
         
-        layout.addWidget(indicator)
-        layout.addLayout(content_layout)
-        layout.addStretch()
-        layout.addWidget(checkmark)
+        wrapper_layout.addWidget(indicator)
+        wrapper_layout.addLayout(content_layout)
+        wrapper_layout.addStretch()
+        wrapper_layout.addWidget(checkmark)
+        
+        # Main layout
+        main_layout = QVBoxLayout(self)
+        main_layout.setContentsMargins(0, 0, 0, 0)
+        main_layout.addWidget(wrapper)
 
 
 class Schedule(QWidget):
@@ -461,7 +513,7 @@ class Schedule(QWidget):
         
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 8, 0, 16)
-        layout.setSpacing(8)
+        layout.setSpacing(10)
         
         # Header
         schedule_label = QLabel("SCHEDULE")
@@ -471,6 +523,8 @@ class Schedule(QWidget):
                 font-size: 16px;
                 font-weight: 600;
                 letter-spacing: 1px;
+                border: none;
+                background: transparent;
             }
         """)
         
@@ -478,10 +532,10 @@ class Schedule(QWidget):
         
         # Schedule items
         items = [
-            ("Deep work", "9a - 12p", "#007AFF"),
-            ("Lunch", "12p - 1p", "#FF9500"),
-            ("Bug fixes", "2p - 3:30p", "#FF3B30"),
-            ("Documentation", "4p - 5p", "#34C759")
+            ("Deep work", "9am - 12pm", "#007AFF"),
+            ("Lunch", "12pm - 1pm", "#FF9500"),
+            ("Bug fixes", "2pm - 3:30pm", "#FF3B30"),
+            ("Documentation", "4pm - 5pm", "#34C759")
         ]
         
         for title, time_range, color in items:
@@ -490,9 +544,12 @@ class Schedule(QWidget):
 
 
 class NavigationBar(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, navigate_callback=None, parent=None):
         super().__init__(parent)
+        self.setFixedHeight(50)
         self.setStyleSheet("background-color: transparent;")
+        self.navigate_callback = navigate_callback
+        self.nav_buttons = {}  # Store button references for updating active state
         
         layout = QHBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -502,31 +559,36 @@ class NavigationBar(QWidget):
         dock = QFrame()
         dock.setStyleSheet("""
             QFrame {
-                background-color: #1a1a1a;
+                background-color: rgba(255, 255, 255, 0.05);
                 border-radius: 16px;
+                border: 1px solid rgba(255, 255, 255, 0.08);
             }
         """)
         
         dock_layout = QHBoxLayout(dock)
-        dock_layout.setContentsMargins(12, 8, 12, 8)
-        dock_layout.setSpacing(8)
+        dock_layout.setContentsMargins(8, 6, 8, 6)
+        dock_layout.setSpacing(6)
         
-        # Icons with SVG paths
+        # Icons with SVG paths - Home is now active
         icons = [
-            ("home.svg", True),
-            ("clock.svg", False),
-            ("calendar.svg", False),
-            ("layers.svg", False),
-            ("flame.svg", False),
-            ("chart.svg", False),
-            ("trophy.svg", False)
+            ("home.svg", True, "dashboard"),
+            ("clock.svg", False, None),
+            ("calendar.svg", False, None),
+            ("layers.svg", False, "tasks"),
+            ("flame.svg", False, None),
+            ("chart.svg", False, None),
+            ("trophy.svg", False, None)
         ]
         
-        for icon_path, active in icons:
+        for icon_path, active, page_name in icons:
             btn = QPushButton()
             try:
                 btn.setIcon(QIcon(icon_path))
-                btn.setIconSize(QSize(24, 24))
+                btn.setIconSize(QSize(20, 20))
+                # Colorize icon to white
+                colorize_effect = QGraphicsColorizeEffect()
+                colorize_effect.setColor(Qt.GlobalColor.white)
+                btn.setGraphicsEffect(colorize_effect)
             except:
                 # Fallback if SVG doesn't exist
                 btn.setText("•")
@@ -534,13 +596,13 @@ class NavigationBar(QWidget):
             if active:
                 btn.setStyleSheet("""
                     QPushButton {
-                        background-color: transparent;
+                        background-color: rgba(255, 255, 255, 0.15);
                         border: none;
-                        padding: 8px;
-                        border-radius: 8px;
+                        padding: 6px;
+                        border-radius: 6px;
                     }
                     QPushButton:hover {
-                        background-color: #2a2a2a;
+                        background-color: rgba(255, 255, 255, 0.2);
                     }
                 """)
             else:
@@ -548,19 +610,57 @@ class NavigationBar(QWidget):
                     QPushButton {
                         background-color: transparent;
                         border: none;
-                        padding: 8px;
-                        border-radius: 8px;
+                        padding: 6px;
+                        border-radius: 6px;
                     }
                     QPushButton:hover {
-                        background-color: #2a2a2a;
+                        background-color: rgba(255, 255, 255, 0.1);
                     }
                 """)
-            btn.setFixedSize(48, 48)
+            btn.setFixedSize(36, 36)
+            
+            # Connect button to navigation callback
+            if page_name and self.navigate_callback:
+                btn.clicked.connect(lambda checked, p=page_name: self.navigate_callback(p))
+            
+            # Store button reference
+            if page_name:
+                self.nav_buttons[page_name] = btn
+            
             dock_layout.addWidget(btn)
         
         layout.addStretch()
         layout.addWidget(dock)
         layout.addStretch()
+    
+    def set_active_page(self, page_name):
+        # Reset all buttons to inactive
+        for btn in self.nav_buttons.values():
+            btn.setStyleSheet("""
+                QPushButton {
+                    background-color: transparent;
+                    border: none;
+                    padding: 6px;
+                    border-radius: 6px;
+                }
+                QPushButton:hover {
+                    background-color: rgba(255, 255, 255, 0.1);
+                }
+            """)
+        
+        # Set active button
+        if page_name in self.nav_buttons:
+            self.nav_buttons[page_name].setStyleSheet("""
+                QPushButton {
+                    background-color: rgba(255, 255, 255, 0.15);
+                    border: none;
+                    padding: 6px;
+                    border-radius: 6px;
+                }
+                QPushButton:hover {
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+            """)
 
 
 class MainWindow(QMainWindow):
@@ -569,7 +669,7 @@ class MainWindow(QMainWindow):
         
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setFixedSize(850, 700)
+        self.showMaximized()
         
         # Main container with rounded corners and shadow
         self.central_widget = QWidget()
@@ -577,49 +677,85 @@ class MainWindow(QMainWindow):
         
         self.central_widget.setStyleSheet("""
             QWidget {
-                background-color: #1e1e1e;
+                background-color: #000000;
                 border-radius: 12px;
             }
         """)
         
         main_layout = QVBoxLayout(self.central_widget)
-        main_layout.setContentsMargins(30, 30, 30, 30)
-        main_layout.setSpacing(20)
+        main_layout.setContentsMargins(40, 25, 40, 25)
+        main_layout.setSpacing(25)
         
         # Title bar
         self.title_bar = TitleBar(self)
         main_layout.addWidget(self.title_bar)
         
-        # Content area
+        # Content area with stacked widget for page switching
         content = QWidget()
         content.setStyleSheet("background-color: transparent;")
         content_layout = QVBoxLayout(content)
         content_layout.setContentsMargins(0, 0, 0, 0)
-        content_layout.setSpacing(20)
+        content_layout.setSpacing(0)
+        
+        # Stacked widget for page switching
+        self.stacked_widget = QStackedWidget()
+        self.stacked_widget.setStyleSheet("background-color: transparent;")
+        
+        # Dashboard page
+        self.dashboard_page = QWidget()
+        self.dashboard_page.setStyleSheet("background-color: transparent;")
+        dashboard_layout = QVBoxLayout(self.dashboard_page)
+        dashboard_layout.setContentsMargins(0, 0, 0, 0)
+        dashboard_layout.setSpacing(25)
         
         # Header
         self.header = Header()
-        content_layout.addWidget(self.header)
+        dashboard_layout.addWidget(self.header)
         
         # Timeline
         self.timeline = Timeline()
-        content_layout.addWidget(self.timeline)
+        dashboard_layout.addWidget(self.timeline)
         
         # Stat cards
         self.stat_cards = StatCards()
-        content_layout.addWidget(self.stat_cards)
+        dashboard_layout.addWidget(self.stat_cards)
         
         # Schedule
         self.schedule = Schedule()
-        content_layout.addWidget(self.schedule)
+        dashboard_layout.addWidget(self.schedule)
+        
+        # Tasks page
+        self.tasks_page = TasksPage()
+        
+        # Add pages to stacked widget
+        self.stacked_widget.addWidget(self.dashboard_page)
+        self.stacked_widget.addWidget(self.tasks_page)
+        
+        # Set dashboard as default
+        self.stacked_widget.setCurrentWidget(self.dashboard_page)
+        
+        content_layout.addWidget(self.stacked_widget)
         
         main_layout.addWidget(content)
         
-        # Navigation bar
-        self.nav_bar = NavigationBar()
+        # Navigation bar with navigation callbacks
+        self.nav_bar = NavigationBar(self.navigate_to_page)
         main_layout.addWidget(self.nav_bar)
         
+        self.current_page = "dashboard"
+        
         self.start_pos = QPoint()
+    
+    def navigate_to_page(self, page_name):
+        if page_name == "dashboard":
+            self.stacked_widget.setCurrentWidget(self.dashboard_page)
+            self.current_page = "dashboard"
+        elif page_name == "tasks":
+            self.stacked_widget.setCurrentWidget(self.tasks_page)
+            self.current_page = "tasks"
+        
+        # Update navigation bar active state
+        self.nav_bar.set_active_page(page_name)
     
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
