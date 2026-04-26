@@ -6,6 +6,9 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
 from PyQt6.QtCore import Qt, QPoint, QSize
 from PyQt6.QtGui import QIcon, QPainter, QColor, QPen, QFont
 from tasks import TasksPage
+from think import ThinkPage
+from schedule import SchedulePage
+from workspaces import WorkspacesPage
 
 
 class TitleBar(QWidget):
@@ -573,11 +576,11 @@ class NavigationBar(QWidget):
         icons = [
             ("home.svg", True, "dashboard"),
             ("clock.svg", False, None),
-            ("calendar.svg", False, None),
+            ("calendar.svg", False, "schedule"),
             ("layers.svg", False, "tasks"),
-            ("flame.svg", False, None),
-            ("chart.svg", False, None),
-            ("trophy.svg", False, None)
+            ("brain.svg", False, "think"),
+            ("flame.svg", False, "workspaces"),
+            ("chart.svg", False, None)
         ]
         
         for icon_path, active, page_name in icons:
@@ -727,9 +730,21 @@ class MainWindow(QMainWindow):
         # Tasks page
         self.tasks_page = TasksPage()
         
+        # Think page
+        self.think_page = ThinkPage()
+        
+        # Schedule page
+        self.schedule_page = SchedulePage()
+        
+        # Workspaces page
+        self.workspaces_page = WorkspacesPage()
+        
         # Add pages to stacked widget
         self.stacked_widget.addWidget(self.dashboard_page)
         self.stacked_widget.addWidget(self.tasks_page)
+        self.stacked_widget.addWidget(self.think_page)
+        self.stacked_widget.addWidget(self.schedule_page)
+        self.stacked_widget.addWidget(self.workspaces_page)
         
         # Set dashboard as default
         self.stacked_widget.setCurrentWidget(self.dashboard_page)
@@ -753,6 +768,15 @@ class MainWindow(QMainWindow):
         elif page_name == "tasks":
             self.stacked_widget.setCurrentWidget(self.tasks_page)
             self.current_page = "tasks"
+        elif page_name == "think":
+            self.stacked_widget.setCurrentWidget(self.think_page)
+            self.current_page = "think"
+        elif page_name == "schedule":
+            self.stacked_widget.setCurrentWidget(self.schedule_page)
+            self.current_page = "schedule"
+        elif page_name == "workspaces":
+            self.stacked_widget.setCurrentWidget(self.workspaces_page)
+            self.current_page = "workspaces"
         
         # Update navigation bar active state
         self.nav_bar.set_active_page(page_name)
