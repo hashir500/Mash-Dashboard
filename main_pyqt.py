@@ -9,6 +9,7 @@ from tasks import TasksPage
 from think import ThinkPage
 from schedule import SchedulePage
 from workspaces import WorkspacesPage
+from habits import HabitsPage
 
 
 class TitleBar(QWidget):
@@ -575,11 +576,11 @@ class NavigationBar(QWidget):
         # Icons with SVG paths - Home is now active
         icons = [
             ("home.svg", True, "dashboard"),
-            ("clock.svg", False, None),
+            ("clock.svg", False, "tasks"),
             ("calendar.svg", False, "schedule"),
-            ("layers.svg", False, "tasks"),
+            ("layers.svg", False, "workspaces"),
             ("brain.svg", False, "think"),
-            ("flame.svg", False, "workspaces"),
+            ("flame.svg", False, "habits"),
             ("chart.svg", False, None)
         ]
         
@@ -739,12 +740,16 @@ class MainWindow(QMainWindow):
         # Workspaces page
         self.workspaces_page = WorkspacesPage()
         
+        # Habits page
+        self.habits_page = HabitsPage()
+        
         # Add pages to stacked widget
         self.stacked_widget.addWidget(self.dashboard_page)
         self.stacked_widget.addWidget(self.tasks_page)
         self.stacked_widget.addWidget(self.think_page)
         self.stacked_widget.addWidget(self.schedule_page)
         self.stacked_widget.addWidget(self.workspaces_page)
+        self.stacked_widget.addWidget(self.habits_page)
         
         # Set dashboard as default
         self.stacked_widget.setCurrentWidget(self.dashboard_page)
@@ -777,6 +782,9 @@ class MainWindow(QMainWindow):
         elif page_name == "workspaces":
             self.stacked_widget.setCurrentWidget(self.workspaces_page)
             self.current_page = "workspaces"
+        elif page_name == "habits":
+            self.stacked_widget.setCurrentWidget(self.habits_page)
+            self.current_page = "habits"
         
         # Update navigation bar active state
         self.nav_bar.set_active_page(page_name)
