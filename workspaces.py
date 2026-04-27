@@ -71,7 +71,7 @@ class WorkspacesPage(QWidget):
         new_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         new_btn.setStyleSheet("""
             QPushButton {
-                background-color: #007AFF;
+                background-color: #238636;
                 color: #ffffff;
                 border-radius: 8px;
                 padding: 10px 20px;
@@ -79,7 +79,7 @@ class WorkspacesPage(QWidget):
                 border: none;
             }
             QPushButton:hover {
-                background-color: #0056CC;
+                background-color: #2ea043;
             }
         """)
         
@@ -265,7 +265,7 @@ class WorkspacesPage(QWidget):
         launch_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         launch_btn.setStyleSheet("""
             QPushButton {
-                background-color: #007AFF;
+                background-color: #238636;
                 color: #ffffff;
                 border: none;
                 border-radius: 8px;
@@ -277,9 +277,11 @@ class WorkspacesPage(QWidget):
             }
         """)
         
-        top_row.addWidget(edit_btn)
-        top_row.addWidget(delete_btn)
-        top_row.addWidget(launch_btn)
+        bottom_row = QHBoxLayout()
+        bottom_row.addWidget(edit_btn)
+        bottom_row.addWidget(delete_btn)
+        bottom_row.addStretch()
+        bottom_row.addWidget(launch_btn)
         
         # Bottom row: Description
         subtitle = QLabel("Full dev environment with editor, terminal, and docs")
@@ -469,7 +471,7 @@ class WorkspacesPage(QWidget):
         add_label = QLabel("+ Add Item")
         add_label.setStyleSheet("""
             QLabel {
-                color: #007AFF;
+                color: #238636;
                 font-size: 14px;
                 font-weight: 500;
                 border: none;

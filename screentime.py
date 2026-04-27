@@ -3,12 +3,17 @@ from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel,
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QIcon, QColor
 import random
+from screentime_tracker import tracker
 
 
 class ScreenTimePage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setStyleSheet("background-color: transparent;")
+        
+        # Generate sample data if none exists
+        if not tracker.data["heatmap_data"]:
+            tracker.generate_sample_data()
         
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 16, 0, 16)
@@ -86,8 +91,8 @@ class ScreenTimePage(QWidget):
         toggle = QFrame()
         toggle.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
+                background-color: #161b22;
+                border: 1px solid #30363d;
                 border-radius: 8px;
             }
         """)
@@ -101,7 +106,7 @@ class ScreenTimePage(QWidget):
         day_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         day_btn.setStyleSheet("""
             QPushButton {
-                background-color: #007AFF;
+                background-color: #238636;
                 color: #ffffff;
                 border: none;
                 border-radius: 6px;
@@ -146,8 +151,8 @@ class ScreenTimePage(QWidget):
         heatmap_frame = QFrame()
         heatmap_frame.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
+                background-color: #161b22;
+                border: 1px solid #30363d;
                 border-radius: 12px;
             }
         """)
@@ -195,20 +200,29 @@ class ScreenTimePage(QWidget):
             "#39d353"   # Level 4 (Max)
         ]
         
+        # Get real heatmap data from tracker
+        heatmap_data = tracker.get_heatmap_data(364)  # 364 days = 52 weeks
+        
         for row in range(7):
             for col in range(52):
                 cell = QFrame()
                 cell.setFixedSize(11, 11)
                 
-                # Generate very dense activity - most cells should have some activity
-                rand = random.random()
-                if rand < 0.15:
-                    color = "rgba(255, 255, 255, 0.05)"  # Empty (only 15%)
-                elif rand < 0.4:
+                # Calculate which day in the data
+                day_index = row * 52 + col
+                if day_index < len(heatmap_data):
+                    level = heatmap_data[day_index]["level"]
+                else:
+                    level = 0
+                
+                # Map level to color
+                if level == 0:
+                    color = "rgba(255, 255, 255, 0.05)"  # Empty
+                elif level == 1:
                     color = colors[0]
-                elif rand < 0.65:
+                elif level == 2:
                     color = colors[1]
-                elif rand < 0.85:
+                elif level == 3:
                     color = colors[2]
                 else:
                     color = colors[3]
@@ -315,14 +329,21 @@ class ScreenTimePage(QWidget):
         layout.addWidget(header)
         
         # GitHub-style activity list
-        activities = [
-            ("Opened Tabbie", "Browsing", "laptop.svg", "08:32 AM"),
-            ("GitHub", "Coding", "globe.svg", "09:15 AM"),
-            ("Coffee Break", "Break", "coffee.svg", "10:45 AM"),
-            ("Deep Work Session", "Coding", "laptop.svg", "11:00 AM"),
-            ("Team Meeting", "Communication", "globe.svg", "01:30 PM"),
-            ("Completed Task", "Done", "check.svg", "02:30 PM")
-        ]
+        # Get real activities from tracker
+        activities_data = tracker.get_today_activities(limit=6)
+        
+        if activities_data:
+            activities = [(a["title"], a["subtitle"], a["icon"], a["timestamp"]) for a in activities_data]
+        else:
+            # Fallback to default activities if no data
+            activities = [
+                ("Opened Tabbie", "Browsing", "laptop.svg", "08:32 AM"),
+                ("GitHub", "Coding", "globe.svg", "09:15 AM"),
+                ("Coffee Break", "Break", "coffee.svg", "10:45 AM"),
+                ("Deep Work Session", "Coding", "laptop.svg", "11:00 AM"),
+                ("Team Meeting", "Communication", "globe.svg", "01:30 PM"),
+                ("Completed Task", "Done", "check.svg", "02:30 PM")
+            ]
         
         for title, subtitle, icon, time in activities:
             item = self.create_github_style_item(title, subtitle, icon, time)
@@ -405,7 +426,7 @@ class ScreenTimePage(QWidget):
         item.setStyleSheet("""
             QWidget {
                 background-color: transparent;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                border-bottom: 1px solid #30363d;
             }
         """)
         item.setFixedHeight(85)
@@ -462,16 +483,16 @@ class ScreenTimePage(QWidget):
         if is_active:
             card.setStyleSheet("""
                 QFrame {
-                    background-color: rgba(255, 255, 255, 0.08);
-                    border: 1px solid rgba(100, 150, 255, 0.5);
+                    background-color: rgba(35, 134, 54, 0.2);
+                    border: 1px solid #238636;
                     border-radius: 10px;
                 }
             """)
         else:
             card.setStyleSheet("""
                 QFrame {
-                    background-color: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.04);
+                    background-color: #161b22;
+                    border: 1px solid #30363d;
                     border-radius: 10px;
                 }
             """)
@@ -597,8 +618,8 @@ class ScreenTimePage(QWidget):
         panel = QFrame()
         panel.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.04);
+                background-color: #161b22;
+                border: 1px solid #30363d;
                 border-radius: 12px;
             }
         """)
@@ -618,32 +639,35 @@ class ScreenTimePage(QWidget):
                 background: transparent;
             }
         """)
+        layout.addWidget(header)
         
-        # Time display
-        time_label = QLabel("8h 32m")
+        # Get real stats from tracker
+        stats = tracker.get_today_stats()
+        focused_minutes = stats.get("focused_minutes", 0)
+        
+        # Time label
+        time_label = QLabel(tracker.format_minutes(focused_minutes))
         time_label.setStyleSheet("""
             QLabel {
                 color: #ffffff;
-                font-size: 36px;
-                font-weight: bold;
+                font-size: 28px;
+                font-weight: 600;
                 border: none;
                 background: transparent;
             }
         """)
+        layout.addWidget(time_label)
         
-        # Blocks done - minimalist text only
+        # Blocks done label (simple text)
         blocks_label = QLabel("3/3 blocks done")
         blocks_label.setStyleSheet("""
             QLabel {
                 color: #666666;
-                font-size: 12px;
+                font-size: 11px;
                 border: none;
                 background: transparent;
             }
         """)
-        
-        layout.addWidget(header)
-        layout.addWidget(time_label)
         layout.addWidget(blocks_label)
         
         return panel
@@ -652,8 +676,8 @@ class ScreenTimePage(QWidget):
         panel = QFrame()
         panel.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.04);
+                background-color: #161b22;
+                border: 1px solid #30363d;
                 border-radius: 12px;
             }
         """)
@@ -678,12 +702,29 @@ class ScreenTimePage(QWidget):
         apps_grid = QGridLayout()
         apps_grid.setSpacing(12)
         
-        apps = [
+        # Get real top apps from tracker
+        top_apps = tracker.get_top_apps(limit=4)
+        
+        # Map app names to icons
+        icon_map = {
+            "VS Code": "laptop.svg",
+            "Browser": "globe.svg",
+            "Terminal": "terminal.svg",
+            "Slack": "coffee.svg"
+        }
+        
+        # Default icons if app not in map
+        default_apps = [
             ("terminal.svg", "Terminal"),
             ("laptop.svg", "VS Code"),
             ("globe.svg", "Browser"),
             ("coffee.svg", "Slack")
         ]
+        
+        if top_apps:
+            apps = [(icon_map.get(app, "laptop.svg"), app) for app, _ in top_apps]
+        else:
+            apps = default_apps
         
         for i, (icon, name) in enumerate(apps):
             app_btn = QPushButton()
@@ -696,7 +737,7 @@ class ScreenTimePage(QWidget):
                     border-radius: 8px;
                 }
                 QPushButton:hover {
-                    background-color: rgba(255, 255, 255, 0.05);
+                    background-color: rgba(35, 134, 54, 0.1);
                 }
             """)
             

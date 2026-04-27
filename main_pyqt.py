@@ -37,7 +37,7 @@ class TitleBar(QWidget):
         status_dot.setFixedSize(8, 8)
         status_dot.setStyleSheet("""
             QLabel {
-                background-color: #27c93f;
+                background-color: #238636;
                 border-radius: 4px;
             }
         """)
@@ -564,9 +564,9 @@ class NavigationBar(QWidget):
         dock = QFrame()
         dock.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
+                background-color: #161b22;
                 border-radius: 16px;
-                border: 1px solid rgba(255, 255, 255, 0.08);
+                border: 1px solid #30363d;
             }
         """)
         
@@ -601,13 +601,13 @@ class NavigationBar(QWidget):
             if active:
                 btn.setStyleSheet("""
                     QPushButton {
-                        background-color: rgba(255, 255, 255, 0.15);
+                        background-color: #238636;
                         border: none;
                         padding: 6px;
                         border-radius: 6px;
                     }
                     QPushButton:hover {
-                        background-color: rgba(255, 255, 255, 0.2);
+                        background-color: #2ea043;
                     }
                 """)
             else:
@@ -657,13 +657,13 @@ class NavigationBar(QWidget):
         if page_name in self.nav_buttons:
             self.nav_buttons[page_name].setStyleSheet("""
                 QPushButton {
-                    background-color: rgba(255, 255, 255, 0.15);
+                    background-color: #238636;
                     border: none;
                     padding: 6px;
                     border-radius: 6px;
                 }
                 QPushButton:hover {
-                    background-color: rgba(255, 255, 255, 0.2);
+                    background-color: #2ea043;
                 }
             """)
 
@@ -682,7 +682,7 @@ class MainWindow(QMainWindow):
         
         self.central_widget.setStyleSheet("""
             QWidget {
-                background-color: #000000;
+                background-color: #0d1117;
                 border-radius: 12px;
             }
         """)

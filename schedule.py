@@ -85,7 +85,7 @@ class SchedulePage(QWidget):
             }
         """)
         
-        date_label = QLabel("Feb 5 <span style='color: #007AFF;'>Today</span>")
+        date_label = QLabel("Feb 5 <span style='color: #238636;'>Today</span>")
         date_label.setStyleSheet("""
             QLabel {
                 color: #888888;
@@ -151,7 +151,7 @@ class SchedulePage(QWidget):
         day_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         day_btn.setStyleSheet("""
             QPushButton {
-                background-color: #007AFF;
+                background-color: #238636;
                 color: #ffffff;
                 border: none;
                 border-radius: 6px;

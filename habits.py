@@ -68,7 +68,7 @@ class HabitsPage(QWidget):
         add_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         add_btn.setStyleSheet("""
             QPushButton {
-                background-color: #007AFF;
+                background-color: #238636;
                 color: white;
                 border-radius: 10px;
                 font-size: 24px;
@@ -77,7 +77,7 @@ class HabitsPage(QWidget):
                 padding-bottom: 4px;
             }
             QPushButton:hover {
-                background-color: #0056CC;
+                background-color: #2ea043;
             }
         """)
         
@@ -95,7 +95,7 @@ class HabitsPage(QWidget):
         layout.setSpacing(12)
         
         # Drink water card
-        water_card = self.create_reminder_card("Drink water", "Every 30m · 2:30 PM", "#007AFF", "water.svg")
+        water_card = self.create_reminder_card("Drink water", "Every 30m · 2:30 PM", "#238636", "water.svg")
         layout.addWidget(water_card)
         
         # Take vitamins card
@@ -108,8 +108,8 @@ class HabitsPage(QWidget):
         card = QFrame()
         card.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
+                background-color: #161b22;
+                border: 1px solid #30363d;
                 border-radius: 12px;
             }
         """)
@@ -457,7 +457,7 @@ class HabitsPage(QWidget):
         row.setStyleSheet("""
             QWidget {
                 background-color: transparent;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                border-bottom: 1px solid #30363d;
             }
         """)
         row.setFixedHeight(60)
