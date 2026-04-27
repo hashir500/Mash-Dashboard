@@ -95,11 +95,11 @@ class HabitsPage(QWidget):
         layout.setSpacing(12)
         
         # Drink water card
-        water_card = self.create_reminder_card("Drink water", "Every 30m · 2:30 PM", "#238636", "water.svg")
+        water_card = self.create_reminder_card("Drink water", "Every 30m · 2:30 PM", "#238636", "assets/water.svg")
         layout.addWidget(water_card)
         
         # Take vitamins card
-        vitamins_card = self.create_reminder_card("Take vitamins", "Daily · 9:00 AM", "#FF3B30", "vitamin.svg")
+        vitamins_card = self.create_reminder_card("Take vitamins", "Daily · 9:00 AM", "#FF3B30", "assets/vitamin.svg")
         layout.addWidget(vitamins_card)
         
         return container
@@ -273,7 +273,7 @@ class HabitsPage(QWidget):
         left_arrow = QPushButton()
         left_arrow.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            left_arrow.setIcon(QIcon("chevron-left.svg"))
+            left_arrow.setIcon(QIcon("assets/chevron-left.svg"))
             left_arrow.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
@@ -310,7 +310,7 @@ class HabitsPage(QWidget):
         right_arrow = QPushButton()
         right_arrow.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            right_arrow.setIcon(QIcon("chevron-right.svg"))
+            right_arrow.setIcon(QIcon("assets/chevron-right.svg"))
             right_arrow.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
@@ -438,10 +438,10 @@ class HabitsPage(QWidget):
         
         # Habit rows
         habits = [
-            ("Exercise", "10/66d", "30d active", "#FF9500", "exercise.svg"),
-            ("Read", "45/66d", "45d active", "#AF52DE", "read.svg"),
-            ("Take vitamins", "66/66d", "66d active", "#FF3B30", "vitamin.svg"),
-            ("Meditate", "20/66d", "20d active", "#5AC8FA", "meditate.svg")
+            ("Exercise", "10/66d", "30d active", "#FF9500", "assets/exercise.svg"),
+            ("Read", "45/66d", "45d active", "#AF52DE", "assets/read.svg"),
+            ("Take vitamins", "66/66d", "66d active", "#FF3B30", "assets/vitamin.svg"),
+            ("Meditate", "20/66d", "20d active", "#5AC8FA", "assets/meditate.svg")
         ]
         
         for title, progress, active, color, icon in habits:
@@ -531,7 +531,7 @@ class HabitsPage(QWidget):
         fire_label = QLabel()
         fire_label.setFixedSize(14, 14)
         try:
-            fire_label.setPixmap(QIcon("flame.svg").pixmap(12, 12))
+            fire_label.setPixmap(QIcon("assets/flame.svg").pixmap(12, 12))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(QColor("#FF9500"))
             fire_label.setGraphicsEffect(colorize_effect)
@@ -578,7 +578,7 @@ class HabitsPage(QWidget):
                 }}
             """)
             try:
-                checkbox.setIcon(QIcon("check.svg"))
+                checkbox.setIcon(QIcon("assets/check.svg"))
                 checkbox.setIconSize(QSize(16, 16))
                 colorize_effect = QGraphicsColorizeEffect()
                 colorize_effect.setColor(QColor(color))  # Use category color instead of white
@@ -594,7 +594,7 @@ class HabitsPage(QWidget):
                 }
             """)
             try:
-                checkbox.setIcon(QIcon("x.svg"))
+                checkbox.setIcon(QIcon("assets/x.svg"))
                 checkbox.setIconSize(QSize(14, 14))
                 colorize_effect = QGraphicsColorizeEffect()
                 colorize_effect.setColor(QColor("#444444"))

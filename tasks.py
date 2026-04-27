@@ -100,7 +100,7 @@ class TaskInput(QWidget):
         plus_btn = QPushButton()
         plus_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            plus_btn.setIcon(QIcon("plus.svg"))
+            plus_btn.setIcon(QIcon("assets/plus.svg"))
             plus_btn.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
@@ -230,7 +230,7 @@ class TaskItem(QWidget):
         edit_btn = QPushButton()
         edit_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            edit_btn.setIcon(QIcon("edit.svg"))
+            edit_btn.setIcon(QIcon("assets/edit.svg"))
             edit_btn.setIconSize(QSize(16, 16))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)

@@ -219,12 +219,12 @@ class ScreenTimeTracker:
         
         # Generate activity timeline for today
         activities = [
-            ("Opened Tabbie", "Browsing", "laptop.svg", "08:32 AM"),
-            ("GitHub", "Coding", "globe.svg", "09:15 AM"),
-            ("Coffee Break", "Break", "coffee.svg", "10:45 AM"),
-            ("Deep Work Session", "Coding", "laptop.svg", "11:00 AM"),
-            ("Team Meeting", "Communication", "globe.svg", "01:30 PM"),
-            ("Completed Task", "Done", "check.svg", "02:30 PM")
+            ("Opened Tabbie", "Browsing", "assets/laptop.svg", "08:32 AM"),
+            ("GitHub", "Coding", "assets/globe.svg", "09:15 AM"),
+            ("Coffee Break", "Break", "assets/coffee.svg", "10:45 AM"),
+            ("Deep Work Session", "Coding", "assets/laptop.svg", "11:00 AM"),
+            ("Team Meeting", "Communication", "assets/globe.svg", "01:30 PM"),
+            ("Completed Task", "Done", "assets/check.svg", "02:30 PM")
         ]
         
         for title, subtitle, icon, timestamp in activities:

@@ -53,7 +53,7 @@ class SchedulePage(QWidget):
         left_arrow = QPushButton()
         left_arrow.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            left_arrow.setIcon(QIcon("chevron-left.svg"))
+            left_arrow.setIcon(QIcon("assets/chevron-left.svg"))
             left_arrow.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
@@ -102,7 +102,7 @@ class SchedulePage(QWidget):
         right_arrow = QPushButton()
         right_arrow.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            right_arrow.setIcon(QIcon("chevron-right.svg"))
+            right_arrow.setIcon(QIcon("assets/chevron-right.svg"))
             right_arrow.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
@@ -430,7 +430,7 @@ class SchedulePage(QWidget):
         # Status checkmark
         checkmark = QLabel()
         try:
-            checkmark.setPixmap(QIcon("check.svg").pixmap(20, 20))
+            checkmark.setPixmap(QIcon("assets/check.svg").pixmap(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
             checkmark.setGraphicsEffect(colorize_effect)

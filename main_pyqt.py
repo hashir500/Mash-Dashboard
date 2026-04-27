@@ -47,7 +47,7 @@ class TitleBar(QWidget):
         
         settings_btn = QPushButton()
         try:
-            settings_btn.setIcon(QIcon("settings.svg"))
+            settings_btn.setIcon(QIcon("assets/settings.svg"))
             settings_btn.setIconSize(QSize(18, 18))
             # Colorize icon to white
             colorize_effect = QGraphicsColorizeEffect()
@@ -70,7 +70,7 @@ class TitleBar(QWidget):
         
         expand_btn = QPushButton()
         try:
-            expand_btn.setIcon(QIcon("expand.svg"))
+            expand_btn.setIcon(QIcon("assets/expand.svg"))
             expand_btn.setIconSize(QSize(18, 18))
             # Colorize icon to white
             colorize_effect = QGraphicsColorizeEffect()
@@ -576,13 +576,13 @@ class NavigationBar(QWidget):
         
         # Icons with SVG paths - Home is now active
         icons = [
-            ("home.svg", True, "dashboard"),
-            ("clock.svg", False, "tasks"),
-            ("calendar.svg", False, "schedule"),
-            ("layers.svg", False, "workspaces"),
-            ("brain.svg", False, "think"),
-            ("flame.svg", False, "habits"),
-            ("chart.svg", False, "screentime")
+            ("assets/home.svg", True, "dashboard"),
+            ("assets/clock.svg", False, "tasks"),
+            ("assets/calendar.svg", False, "schedule"),
+            ("assets/layers.svg", False, "workspaces"),
+            ("assets/brain.svg", False, "think"),
+            ("assets/flame.svg", False, "habits"),
+            ("assets/chart.svg", False, "screentime")
         ]
         
         for icon_path, active, page_name in icons:

@@ -125,10 +125,10 @@ class WorkspacesPage(QWidget):
         
         # Map category names to icon files
         icon_map = {
-            "Coding": "coding.svg",
-            "Design": "design.svg",
-            "Communication": "communication.svg",
-            "Research": "research.svg"
+            "Coding": "assets/coding.svg",
+            "Design": "assets/design.svg",
+            "Communication": "assets/communication.svg",
+            "Research": "assets/research.svg"
         }
         
         # Add colorful icon without white colorization
@@ -218,7 +218,7 @@ class WorkspacesPage(QWidget):
         edit_btn = QPushButton()
         edit_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            edit_btn.setIcon(QIcon("edit.svg"))
+            edit_btn.setIcon(QIcon("assets/edit.svg"))
             edit_btn.setIconSize(QSize(16, 16))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
@@ -241,7 +241,7 @@ class WorkspacesPage(QWidget):
         delete_btn = QPushButton()
         delete_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            delete_btn.setIcon(QIcon("trash.svg"))
+            delete_btn.setIcon(QIcon("assets/trash.svg"))
             delete_btn.setIconSize(QSize(16, 16))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
@@ -377,7 +377,7 @@ class WorkspacesPage(QWidget):
         icon_label = QLabel()
         icon_label.setStyleSheet("border: none; background: transparent;")
         try:
-            icon_label.setPixmap(QIcon("file.svg").pixmap(20, 20))
+            icon_label.setPixmap(QIcon("assets/file.svg").pixmap(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
             icon_label.setGraphicsEffect(colorize_effect)

@@ -73,7 +73,7 @@ class ThinkPage(QWidget):
         filter_btn = QPushButton()
         filter_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            filter_btn.setIcon(QIcon("filter.svg"))
+            filter_btn.setIcon(QIcon("assets/filter.svg"))
             filter_btn.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
@@ -92,7 +92,7 @@ class ThinkPage(QWidget):
         search_btn = QPushButton()
         search_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            search_btn.setIcon(QIcon("search.svg"))
+            search_btn.setIcon(QIcon("assets/search.svg"))
             search_btn.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
@@ -126,10 +126,10 @@ class ThinkPage(QWidget):
         layout.setSpacing(8)
         
         chips = [
-            ("All 6", True, "list.svg"),
-            ("Text 4", False, "text.svg"),
-            ("Images 1", False, "image.svg"),
-            ("Links 1", False, "link.svg")
+            ("All 6", True, "assets/list.svg"),
+            ("Text 4", False, "assets/text.svg"),
+            ("Images 1", False, "assets/image.svg"),
+            ("Links 1", False, "assets/link.svg")
         ]
         
         for text, active, icon_path in chips:
@@ -317,7 +317,7 @@ class ThinkPage(QWidget):
         paperclip_btn = QPushButton()
         paperclip_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         try:
-            paperclip_btn.setIcon(QIcon("paperclip.svg"))
+            paperclip_btn.setIcon(QIcon("assets/paperclip.svg"))
             paperclip_btn.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
             colorize_effect.setColor(Qt.GlobalColor.white)
