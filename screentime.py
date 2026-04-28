@@ -251,6 +251,7 @@ class ScreenTimePage(QWidget):
         return toggle
     
     def create_heatmap(self):
+        """Create month-based heatmap with exact days per month"""
         container = QWidget()
         container.setStyleSheet("background-color: transparent;")
         container.setSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Preferred)
@@ -273,37 +274,24 @@ class ScreenTimePage(QWidget):
         heatmap_layout.setSpacing(12)
         heatmap_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         
-        # Main heatmap container with day labels on left
-        heatmap_container = QHBoxLayout()
-        heatmap_container.setSpacing(8)
-        heatmap_container.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        # Get real heatmap data from tracker
+        heatmap_data = tracker.get_heatmap_data(365)  # 365 days = 1 year
         
-        # Day labels (vertical)
-        day_labels = QVBoxLayout()
-        day_labels.setSpacing(0)
+        # Group data by month
+        from datetime import datetime
+        from collections import defaultdict
+        monthly_data = defaultdict(list)
         
-        days = ["Mon", "", "Wed", "", "Fri", "", ""]
-        for day in days:
-            label = QLabel(day)
-            label.setStyleSheet("""
-                QLabel {
-                    color: #666666;
-                    font-size: 10px;
-                    border: none;
-                    background: transparent;
-                }
-            """)
-            label.setFixedHeight(14)
-            day_labels.addWidget(label)
+        for entry in heatmap_data:
+            date_str = entry["date"]
+            date = datetime.strptime(date_str, "%Y-%m-%d")
+            month_key = date.strftime("%Y-%m")
+            monthly_data[month_key].append(entry)
         
-        heatmap_container.addLayout(day_labels)
+        # Sort months chronologically (include all months with data)
+        sorted_months = sorted(monthly_data.keys())
         
-        # GitHub-style grid
-        grid = QGridLayout()
-        grid.setSpacing(2)
-        grid.setContentsMargins(0, 0, 0, 0)
-        
-        # 7 rows x 52 columns (full year - 52 weeks x 7 days)
+        # Colors for activity levels
         colors = [
             "#0e4429",  # Level 1
             "#006d32",  # Level 2
@@ -311,30 +299,64 @@ class ScreenTimePage(QWidget):
             "#39d353"   # Level 4 (Max)
         ]
         
-        # Get real heatmap data from tracker
-        heatmap_data = tracker.get_heatmap_data(364)  # 364 days = 52 weeks
+        # Create a horizontal layout for months
+        months_container = QHBoxLayout()
+        months_container.setSpacing(8)
+        months_container.setAlignment(Qt.AlignmentFlag.AlignLeft)
         
-        for row in range(7):
-            for col in range(52):
-                # Calculate which day in the data
-                # GitHub-style: columns are weeks (oldest to newest), rows are days of week
-                # Row 0 = Sunday, Row 6 = Saturday (or similar)
-                # Col 0 = oldest week, Col 51 = newest week
-                day_index = col * 7 + row
-                if day_index < len(heatmap_data):
-                    level = heatmap_data[day_index]["level"]
-                    date_str = heatmap_data[day_index]["date"]
-                else:
-                    level = 0
-                    date_str = ""
+        for month_key in sorted_months:
+            month_data = monthly_data[month_key]
+            if not month_data:
+                continue
+            
+            # Create month container
+            month_widget = QWidget()
+            month_widget.setStyleSheet("background-color: transparent;")
+            month_layout = QVBoxLayout(month_widget)
+            month_layout.setContentsMargins(0, 0, 0, 0)
+            month_layout.setSpacing(2)
+            
+            # Month label
+            month_date = datetime.strptime(month_key + "-01", "%Y-%m-%d")
+            month_name = month_date.strftime("%b")
+            month_label = QLabel(month_name)
+            month_label.setStyleSheet("""
+                QLabel {
+                    color: #666666;
+                    font-size: 10px;
+                    border: none;
+                    background: transparent;
+                }
+            """)
+            month_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            month_layout.addWidget(month_label)
+            
+            # Create grid for this month's days
+            month_grid = QGridLayout()
+            month_grid.setSpacing(2)
+            month_grid.setContentsMargins(0, 0, 0, 0)
+            
+            # Determine starting day of week for this month
+            first_day = datetime.strptime(month_data[0]["date"], "%Y-%m-%d")
+            start_day = first_day.weekday()  # Monday=0, Sunday=6
+            
+            # Add empty cells for days before the first day of the month
+            for i in range(start_day):
+                empty_cell = QFrame()
+                empty_cell.setFixedSize(11, 11)
+                empty_cell.setStyleSheet("background-color: transparent;")
+                month_grid.addWidget(empty_cell, 0, i)
+            
+            # Add cells for each day in the month
+            col = start_day
+            row = 0
+            for entry in month_data:
+                level = entry["level"]
+                date_str = entry["date"]
                 
                 # Get daily stats
-                if date_str:
-                    total_minutes = tracker.data["daily_data"].get(date_str, {}).get("total_minutes", 0)
-                    focused_minutes = tracker.data["daily_data"].get(date_str, {}).get("focused_minutes", 0)
-                else:
-                    total_minutes = 0
-                    focused_minutes = 0
+                total_minutes = tracker.data["daily_data"].get(date_str, {}).get("total_minutes", 0)
+                focused_minutes = tracker.data["daily_data"].get(date_str, {}).get("focused_minutes", 0)
                 
                 cell = HeatmapCell(date_str, total_minutes, focused_minutes)
                 cell.setFixedSize(11, 11)
@@ -361,10 +383,18 @@ class ScreenTimePage(QWidget):
                     }}
                 """)
                 
-                grid.addWidget(cell, row, col)
+                month_grid.addWidget(cell, row, col)
+                col += 1
+                
+                # Move to next row after Saturday (col 6)
+                if col > 6:
+                    col = 0
+                    row += 1
+            
+            month_layout.addLayout(month_grid)
+            months_container.addWidget(month_widget)
         
-        heatmap_container.addLayout(grid)
-        heatmap_layout.addLayout(heatmap_container)
+        heatmap_layout.addLayout(months_container)
         
         # Hover info label
         self.hover_info_label = QLabel()
@@ -378,29 +408,6 @@ class ScreenTimePage(QWidget):
         """)
         self.hover_info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         heatmap_layout.addWidget(self.hover_info_label)
-        
-        # Month labels (horizontal)
-        months_layout = QHBoxLayout()
-        months_layout.setSpacing(0)
-        months_layout.addSpacing(30)  # Space for day labels
-        months_layout.setAlignment(Qt.AlignmentFlag.AlignLeft)
-        
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        for month in months:
-            label = QLabel(month)
-            label.setStyleSheet("""
-                QLabel {
-                    color: #666666;
-                    font-size: 10px;
-                    border: none;
-                    background: transparent;
-                }
-            """)
-            label.setFixedWidth(42)
-            months_layout.addWidget(label)
-        
-        months_layout.addStretch()
-        heatmap_layout.addLayout(months_layout)
         
         # Legend (GitHub-style intensity legend)
         legend_layout = QHBoxLayout()
