@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Mash Dashboard
+Comment=Personal productivity dashboard
+Exec=/home/hashir/Documents/mash-dashboard/launch.sh
+Icon=/home/hashir/Documents/mash-dashboard/assets/laptop.svg
+Terminal=false
+Type=Application
+Categories=Productivity;Utility;
+StartupNotify=true
+Path=/home/hashir/Documents/mash-dashboard

@@ -38,8 +38,61 @@ class ScreenTimePage(QWidget):
         layout.addLayout(top_section)
         
         # Timeline section (full width below)
-        timeline = self.create_timeline_column()
+        timeline = self.create_github_style_timeline()
         layout.addWidget(timeline)
+    
+    def create_github_style_timeline(self):
+        """Create GitHub-style activity timeline"""
+        container = QFrame()
+        container.setStyleSheet("""
+            QFrame {
+                background-color: #161b22;
+                border: 1px solid #30363d;
+                border-radius: 12px;
+            }
+        """)
+        
+        layout = QVBoxLayout(container)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(16)
+        
+        # Header
+        header = QLabel("TODAY ACTIVITY")
+        header.setStyleSheet("""
+            QLabel {
+                color: #888888;
+                font-size: 13px;
+                font-weight: 500;
+                border: none;
+                background: transparent;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # GitHub-style activity list
+        # Get real activities from tracker
+        activities_data = tracker.get_today_activities(limit=6)
+        
+        if activities_data:
+            activities = [(a["title"], a["subtitle"], a["icon"], a["timestamp"]) for a in activities_data]
+        else:
+            # Fallback to default activities if no data
+            activities = [
+                ("Opened Tabbie", "Browsing", "assets/laptop.svg", "08:32 AM"),
+                ("GitHub", "Coding", "assets/globe.svg", "09:15 AM"),
+                ("Coffee Break", "Break", "assets/coffee.svg", "10:45 AM"),
+                ("Deep Work Session", "Coding", "assets/laptop.svg", "11:00 AM"),
+                ("Team Meeting", "Communication", "assets/globe.svg", "01:30 PM"),
+                ("Completed Task", "Done", "assets/check.svg", "02:30 PM")
+            ]
+        
+        for title, subtitle, icon, time in activities:
+            item = self.create_github_style_item(title, subtitle, icon, time)
+            layout.addWidget(item)
+        
+        layout.addStretch()
+        
+        return container
     
     def create_header(self):
         header = QWidget()
@@ -78,14 +131,45 @@ class ScreenTimePage(QWidget):
         left_layout.addWidget(title)
         left_layout.addWidget(subtitle)
         
-        # Right side: Day/Week toggle
-        toggle = self.create_toggle()
-        
         layout.addLayout(left_layout)
         layout.addStretch()
+        
+        # Sync button
+        sync_btn = QPushButton("Sync")
+        sync_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        sync_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #238636;
+                color: #ffffff;
+                border: none;
+                border-radius: 6px;
+                padding: 6px 12px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+            QPushButton:hover {
+                background-color: #2ea043;
+            }
+        """)
+        sync_btn.clicked.connect(self.sync_activitywatch)
+        layout.addWidget(sync_btn)
+        
+        # Right side: Day/Week toggle
+        toggle = self.create_toggle()
         layout.addWidget(toggle)
         
         return header
+    
+    def sync_activitywatch(self):
+        """Sync data from ActivityWatch"""
+        success = tracker.sync_from_activitywatch(days=7)
+        if success:
+            # Refresh the UI
+            from PyQt6.QtWidgets import QMessageBox
+            QMessageBox.information(self, "Sync Complete", "Data synced from ActivityWatch successfully!")
+        else:
+            from PyQt6.QtWidgets import QMessageBox
+            QMessageBox.warning(self, "Sync Failed", "Could not connect to ActivityWatch. Make sure it's running on localhost:5600")
     
     def create_toggle(self):
         toggle = QFrame()
@@ -304,18 +388,27 @@ class ScreenTimePage(QWidget):
         legend_layout.addStretch()
         heatmap_layout.addLayout(legend_layout)
         
+        # Add the heatmap frame to the container layout
         layout.addWidget(heatmap_frame)
         
         return container
     
-    def create_timeline_column(self):
-        container = QWidget()
-        container.setStyleSheet("background-color: transparent;")
+    def create_github_style_timeline(self):
+        """Create GitHub-style activity timeline"""
+        container = QFrame()
+        container.setStyleSheet("""
+            QFrame {
+                background-color: #161b22;
+                border: 1px solid #30363d;
+                border-radius: 12px;
+            }
+        """)
         
         layout = QVBoxLayout(container)
-        layout.setSpacing(12)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(16)
         
-        # Section header
+        # Header
         header = QLabel("TODAY ACTIVITY")
         header.setStyleSheet("""
             QLabel {

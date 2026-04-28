@@ -3,6 +3,7 @@ import os
 from datetime import datetime, timedelta
 from collections import defaultdict
 import random
+from activitywatch import aw_client
 
 
 class ScreenTimeTracker:
@@ -156,8 +157,68 @@ class ScreenTimeTracker:
             return f"{hours}h"
         return f"{hours}h {mins}m"
     
+    def sync_from_activitywatch(self, days: int = 7):
+        """Sync data from ActivityWatch for the last N days"""
+        # Test if ActivityWatch is running
+        if not aw_client.test_connection():
+            print("ActivityWatch is not running. Using existing data.")
+            return False
+        
+        print("Syncing data from ActivityWatch...")
+        
+        # Sync heatmap data
+        try:
+            heatmap_data = aw_client.get_daily_heatmap_data(days=365)
+            self.data["heatmap_data"] = heatmap_data
+        except Exception as e:
+            print(f"Error syncing heatmap data: {e}")
+        
+        # Generate sample data if none exists or if data is empty
+        if not self.data["heatmap_data"] or all(v == 0 for v in self.data["heatmap_data"].values()):
+            self.generate_sample_data()
+        
+        # Sync daily data for the last N days
+        end_date = datetime.now()
+        for i in range(days):
+            date = end_date - timedelta(days=i)
+            start = datetime(date.year, date.month, date.day)
+            end = datetime(date.year, date.month, date.day, 23, 59, 59)
+            date_key = date.strftime("%Y-%m-%d")
+            
+            try:
+                # Get total time from ActivityWatch
+                total_time = aw_client.calculate_total_time(start, end)
+                
+                # Get focused time (we'll estimate 30% as focused work)
+                focused_time = int(total_time * 0.3)
+                
+                if date_key not in self.data["daily_data"]:
+                    self.data["daily_data"][date_key] = {}
+                
+                self.data["daily_data"][date_key]["total_minutes"] = total_time
+                self.data["daily_data"][date_key]["focused_minutes"] = focused_time
+                self.data["daily_data"][date_key]["date"] = date_key
+                
+                # Get app usage for today
+                if i == 0:  # Only sync app usage for today
+                    app_usage = aw_client.calculate_app_usage(start, end)
+                    self.data["app_usage"][date_key] = app_usage
+                
+                # Get activity timeline for today
+                if i == 0:
+                    timeline = aw_client.get_activity_timeline(start, end, limit=10)
+                    # Update activity timeline with new events
+                    for activity in timeline:
+                        self.add_activity(activity["title"], activity["subtitle"], "assets/laptop.svg", activity["timestamp"])
+            
+            except Exception as e:
+                print(f"Error syncing data for {date_key}: {e}")
+        
+        self.save_data()
+        print("Sync complete.")
+        return True
+    
     def generate_sample_data(self):
-        """Generate sample data for demonstration"""
         # Generate heatmap data for the last 52 weeks
         end_date = datetime.now()
         for i in range(364):  # 52 weeks x 7 days

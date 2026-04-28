@@ -1,16 +1,22 @@
 import sys
+import os
 from datetime import datetime
+
+# Set working directory to script location
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)
+
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
-                             QHBoxLayout, QLabel, QPushButton, QFrame, QSizePolicy,
-                             QGraphicsColorizeEffect, QSpacerItem, QStackedWidget)
-from PyQt6.QtCore import Qt, QPoint, QSize
-from PyQt6.QtGui import QIcon, QPainter, QColor, QPen, QFont
-from tasks import TasksPage
-from think import ThinkPage
+                             QHBoxLayout, QLabel, QPushButton, QFrame, 
+                             QStackedWidget, QGraphicsColorizeEffect, QSizePolicy)
+from PyQt6.QtCore import Qt, QSize, QPoint
+from PyQt6.QtGui import QIcon, QColor, QFont
+from screentime import ScreenTimePage
+from habits import HabitsPage
 from schedule import SchedulePage
 from workspaces import WorkspacesPage
-from habits import HabitsPage
-from screentime import ScreenTimePage
+from tasks import TasksPage
+from think import ThinkPage
 
 
 class TitleBar(QWidget):
