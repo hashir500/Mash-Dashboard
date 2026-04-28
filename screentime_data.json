@@ -1,8 +1,8 @@
 {
   "daily_data": {
     "2026-04-28": {
-      "total_minutes": 80,
-      "focused_minutes": 24,
+      "total_minutes": 92,
+      "focused_minutes": 27,
       "date": "2026-04-28"
     },
     "2026-04-27": {
@@ -38,11 +38,11 @@
   },
   "app_usage": {
     "2026-04-28": {
-      "python3": 1.2315833333333335,
-      "": 0.016983333333333333,
-      "windsurf": 1.9420999999999997,
-      "chromium": 2.3040166666666666,
-      "gnome-terminal-server": 1.7236833333333332,
+      "python3": 4.577966666666666,
+      "chromium": 3.343466666666666,
+      "windsurf": 8.27775,
+      "": 0.12486666666666667,
+      "gnome-terminal-server": 1.7765,
       "Gjs": 0.7934333333333333,
       "Chromium": 53.74298333333333,
       "Windsurf": 37.42823333333333,
@@ -194,255 +194,563 @@
       "date": "2026-04-28"
     },
     {
-      "title": "Completed Task",
-      "subtitle": "Done",
-      "icon": "assets/check.svg",
-      "timestamp": "02:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Team Meeting",
-      "subtitle": "Communication",
-      "icon": "assets/globe.svg",
-      "timestamp": "01:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Deep Work Session",
-      "subtitle": "Coding",
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
       "icon": "assets/laptop.svg",
-      "timestamp": "11:00 AM",
+      "timestamp": "02:01 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Coffee Break",
-      "subtitle": "Break",
-      "icon": "assets/coffee.svg",
-      "timestamp": "10:45 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "GitHub",
-      "subtitle": "Coding",
-      "icon": "assets/globe.svg",
-      "timestamp": "09:15 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Opened Tabbie",
-      "subtitle": "Browsing",
+      "title": "unknown",
+      "subtitle": "unknown",
       "icon": "assets/laptop.svg",
-      "timestamp": "08:32 AM",
+      "timestamp": "02:01 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Completed Task",
-      "subtitle": "Done",
-      "icon": "assets/check.svg",
-      "timestamp": "02:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Team Meeting",
-      "subtitle": "Communication",
-      "icon": "assets/globe.svg",
-      "timestamp": "01:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Deep Work Session",
-      "subtitle": "Coding",
+      "title": "Gjs",
+      "subtitle": "Desktop Icons 1",
       "icon": "assets/laptop.svg",
-      "timestamp": "11:00 AM",
+      "timestamp": "02:01 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Coffee Break",
-      "subtitle": "Break",
-      "icon": "assets/coffee.svg",
-      "timestamp": "10:45 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "GitHub",
-      "subtitle": "Coding",
-      "icon": "assets/globe.svg",
-      "timestamp": "09:15 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Opened Tabbie",
-      "subtitle": "Browsing",
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
       "icon": "assets/laptop.svg",
-      "timestamp": "08:32 AM",
+      "timestamp": "02:01 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Completed Task",
-      "subtitle": "Done",
-      "icon": "assets/check.svg",
-      "timestamp": "02:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Team Meeting",
-      "subtitle": "Communication",
-      "icon": "assets/globe.svg",
-      "timestamp": "01:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Deep Work Session",
-      "subtitle": "Coding",
+      "title": "extension-manager",
+      "subtitle": "Extension Manager",
       "icon": "assets/laptop.svg",
-      "timestamp": "11:00 AM",
+      "timestamp": "02:01 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Coffee Break",
-      "subtitle": "Break",
-      "icon": "assets/coffee.svg",
-      "timestamp": "10:45 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "GitHub",
-      "subtitle": "Coding",
-      "icon": "assets/globe.svg",
-      "timestamp": "09:15 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Opened Tabbie",
-      "subtitle": "Browsing",
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
       "icon": "assets/laptop.svg",
-      "timestamp": "08:32 AM",
+      "timestamp": "02:01 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Completed Task",
-      "subtitle": "Done",
-      "icon": "assets/check.svg",
-      "timestamp": "02:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Team Meeting",
-      "subtitle": "Communication",
-      "icon": "assets/globe.svg",
-      "timestamp": "01:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Deep Work Session",
-      "subtitle": "Coding",
+      "title": "unknown",
+      "subtitle": "unknown",
       "icon": "assets/laptop.svg",
-      "timestamp": "11:00 AM",
+      "timestamp": "02:01 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Coffee Break",
-      "subtitle": "Break",
-      "icon": "assets/coffee.svg",
-      "timestamp": "10:45 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "GitHub",
-      "subtitle": "Coding",
-      "icon": "assets/globe.svg",
-      "timestamp": "09:15 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Opened Tabbie",
-      "subtitle": "Browsing",
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
       "icon": "assets/laptop.svg",
-      "timestamp": "08:32 AM",
+      "timestamp": "02:01 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Completed Task",
-      "subtitle": "Done",
-      "icon": "assets/check.svg",
-      "timestamp": "02:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Team Meeting",
-      "subtitle": "Communication",
-      "icon": "assets/globe.svg",
-      "timestamp": "01:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Deep Work Session",
-      "subtitle": "Coding",
+      "title": "Chromium",
+      "subtitle": "New Tab - Chromium",
       "icon": "assets/laptop.svg",
-      "timestamp": "11:00 AM",
+      "timestamp": "02:00 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Coffee Break",
-      "subtitle": "Break",
-      "icon": "assets/coffee.svg",
-      "timestamp": "10:45 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "GitHub",
-      "subtitle": "Coding",
-      "icon": "assets/globe.svg",
-      "timestamp": "09:15 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Opened Tabbie",
-      "subtitle": "Browsing",
+      "title": "unknown",
+      "subtitle": "unknown",
       "icon": "assets/laptop.svg",
-      "timestamp": "08:32 AM",
+      "timestamp": "02:00 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Completed Task",
-      "subtitle": "Done",
-      "icon": "assets/check.svg",
-      "timestamp": "02:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Team Meeting",
-      "subtitle": "Communication",
-      "icon": "assets/globe.svg",
-      "timestamp": "01:30 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Deep Work Session",
-      "subtitle": "Coding",
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
       "icon": "assets/laptop.svg",
-      "timestamp": "11:00 AM",
+      "timestamp": "02:01 PM",
       "date": "2026-04-28"
     },
     {
-      "title": "Coffee Break",
-      "subtitle": "Break",
-      "icon": "assets/coffee.svg",
-      "timestamp": "10:45 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "GitHub",
-      "subtitle": "Coding",
-      "icon": "assets/globe.svg",
-      "timestamp": "09:15 AM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Opened Tabbie",
-      "subtitle": "Browsing",
+      "title": "unknown",
+      "subtitle": "unknown",
       "icon": "assets/laptop.svg",
-      "timestamp": "08:32 AM",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Gjs",
+      "subtitle": "Desktop Icons 1",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "extension-manager",
+      "subtitle": "Extension Manager",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Gjs",
+      "subtitle": "Desktop Icons 1",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "extension-manager",
+      "subtitle": "Extension Manager",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Gjs",
+      "subtitle": "Desktop Icons 1",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "extension-manager",
+      "subtitle": "Extension Manager",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Gjs",
+      "subtitle": "Desktop Icons 1",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "extension-manager",
+      "subtitle": "Extension Manager",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Gjs",
+      "subtitle": "Desktop Icons 1",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "extension-manager",
+      "subtitle": "Extension Manager",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Gjs",
+      "subtitle": "Desktop Icons 1",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "extension-manager",
+      "subtitle": "Extension Manager",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Gjs",
+      "subtitle": "Desktop Icons 1",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "extension-manager",
+      "subtitle": "Extension Manager",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:01 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "Chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "unknown",
+      "subtitle": "unknown",
+      "icon": "assets/laptop.svg",
+      "timestamp": "02:00 PM",
       "date": "2026-04-28"
     }
   ],

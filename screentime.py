@@ -1,9 +1,28 @@
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, 
-                             QPushButton, QFrame, QScrollArea, QGraphicsColorizeEffect, QGridLayout, QSizePolicy)
+                             QPushButton, QFrame, QStackedWidget, QGraphicsColorizeEffect, QSizePolicy, QGridLayout)
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QIcon, QColor
 import random
 from screentime_tracker import tracker
+
+
+class HeatmapCell(QPushButton):
+    def __init__(self, date_str, total_minutes, focused_minutes, parent=None):
+        super().__init__(parent)
+        self.date_str = date_str
+        self.total_minutes = total_minutes
+        self.focused_minutes = focused_minutes
+        self.hover_info_callback = None
+    
+    def enterEvent(self, event):
+        if self.hover_info_callback:
+            self.hover_info_callback(self.date_str, self.total_minutes, self.focused_minutes)
+        super().enterEvent(event)
+    
+    def leaveEvent(self, event):
+        if self.hover_info_callback:
+            self.hover_info_callback("", 0, 0)
+        super().leaveEvent(event)
 
 
 class ScreenTimePage(QWidget):
@@ -40,6 +59,14 @@ class ScreenTimePage(QWidget):
         # Timeline section (full width below)
         timeline = self.create_github_style_timeline()
         layout.addWidget(timeline)
+    
+    def update_hover_info(self, date_str, total_minutes, focused_minutes):
+        """Update the hover info label when hovering over a heatmap cell"""
+        if date_str:
+            text = f"{date_str} | Total: {tracker.format_minutes(total_minutes)} | Focused: {tracker.format_minutes(focused_minutes)}"
+            self.hover_info_label.setText(text)
+        else:
+            self.hover_info_label.setText("")
     
     def create_github_style_timeline(self):
         """Create GitHub-style activity timeline"""
@@ -289,15 +316,29 @@ class ScreenTimePage(QWidget):
         
         for row in range(7):
             for col in range(52):
-                cell = QFrame()
-                cell.setFixedSize(11, 11)
-                
                 # Calculate which day in the data
-                day_index = row * 52 + col
+                # GitHub-style: columns are weeks (oldest to newest), rows are days of week
+                # Row 0 = Sunday, Row 6 = Saturday (or similar)
+                # Col 0 = oldest week, Col 51 = newest week
+                day_index = col * 7 + row
                 if day_index < len(heatmap_data):
                     level = heatmap_data[day_index]["level"]
+                    date_str = heatmap_data[day_index]["date"]
                 else:
                     level = 0
+                    date_str = ""
+                
+                # Get daily stats
+                if date_str:
+                    total_minutes = tracker.data["daily_data"].get(date_str, {}).get("total_minutes", 0)
+                    focused_minutes = tracker.data["daily_data"].get(date_str, {}).get("focused_minutes", 0)
+                else:
+                    total_minutes = 0
+                    focused_minutes = 0
+                
+                cell = HeatmapCell(date_str, total_minutes, focused_minutes)
+                cell.setFixedSize(11, 11)
+                cell.hover_info_callback = self.update_hover_info
                 
                 # Map level to color
                 if level == 0:
@@ -312,15 +353,31 @@ class ScreenTimePage(QWidget):
                     color = colors[3]
                 
                 cell.setStyleSheet(f"""
-                    QFrame {{
+                    QPushButton {{
                         background-color: {color};
                         border-radius: 2px;
+                        border: none;
+                        padding: 0px;
                     }}
                 """)
+                
                 grid.addWidget(cell, row, col)
         
         heatmap_container.addLayout(grid)
         heatmap_layout.addLayout(heatmap_container)
+        
+        # Hover info label
+        self.hover_info_label = QLabel()
+        self.hover_info_label.setStyleSheet("""
+            QLabel {
+                color: #888888;
+                font-size: 12px;
+                border: none;
+                background: transparent;
+            }
+        """)
+        self.hover_info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        heatmap_layout.addWidget(self.hover_info_label)
         
         # Month labels (horizontal)
         months_layout = QHBoxLayout()
@@ -737,6 +794,7 @@ class ScreenTimePage(QWidget):
         # Get real stats from tracker
         stats = tracker.get_today_stats()
         focused_minutes = stats.get("focused_minutes", 0)
+        total_minutes = stats.get("total_minutes", 0)
         
         # Time label
         time_label = QLabel(tracker.format_minutes(focused_minutes))
@@ -750,6 +808,18 @@ class ScreenTimePage(QWidget):
             }
         """)
         layout.addWidget(time_label)
+        
+        # Total time label
+        total_label = QLabel(f"Total: {tracker.format_minutes(total_minutes)}")
+        total_label.setStyleSheet("""
+            QLabel {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                background: transparent;
+            }
+        """)
+        layout.addWidget(total_label)
         
         # Blocks done label (simple text)
         blocks_label = QLabel("3/3 blocks done")

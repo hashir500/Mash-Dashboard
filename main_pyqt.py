@@ -164,8 +164,12 @@ class TitleBar(QWidget):
         if self.parent_window:
             if self.parent_window.isMaximized():
                 self.parent_window.showNormal()
+                # Reset margins when not maximized
+                self.parent_window.central_widget.layout().setContentsMargins(40, 25, 40, 25)
             else:
                 self.parent_window.showMaximized()
+                # Remove margins when maximized to fill screen
+                self.parent_window.central_widget.layout().setContentsMargins(0, 0, 0, 0)
     
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
