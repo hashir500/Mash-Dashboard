@@ -8,11 +8,16 @@ from PyQt6.QtGui import QIcon
 class SchedulePage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setStyleSheet("background-color: transparent;")
+        self.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+                color: #1f2a3d;
+            }
+        """)
         
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 16, 0, 16)
-        layout.setSpacing(20)
+        layout.setContentsMargins(10, 8, 10, 10)
+        layout.setSpacing(10)
         
         # Header
         header = self.create_header()
@@ -43,11 +48,11 @@ class SchedulePage(QWidget):
         
         layout = QHBoxLayout(header)
         layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(20)
+        layout.setSpacing(10)
         
         # Left side: Date navigation
         left_layout = QHBoxLayout()
-        left_layout.setSpacing(12)
+        left_layout.setSpacing(8)
         
         # Left arrow
         left_arrow = QPushButton()
@@ -56,7 +61,7 @@ class SchedulePage(QWidget):
             left_arrow.setIcon(QIcon("assets/chevron-left.svg"))
             left_arrow.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             left_arrow.setGraphicsEffect(colorize_effect)
         except:
             left_arrow.setText("<")
@@ -64,32 +69,32 @@ class SchedulePage(QWidget):
             QPushButton {
                 background-color: transparent;
                 border: none;
-                color: #ffffff;
-                font-size: 20px;
+                color: #2f3b52;
+                font-size: 16px;
             }
         """)
-        left_arrow.setFixedSize(24, 24)
+        left_arrow.setFixedSize(20, 20)
         
         # Date display
         date_layout = QVBoxLayout()
         date_layout.setSpacing(4)
         
-        day_label = QLabel("Thursday")
+        day_label = QLabel("Today - Wed, May 6")
         day_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
-                font-size: 24px;
-                font-weight: bold;
+                color: #2f3b52;
+                font-size: 18px;
+                font-weight: 700;
                 border: none;
                 background: transparent;
             }
         """)
         
-        date_label = QLabel("Feb 5 <span style='color: #238636;'>Today</span>")
+        date_label = QLabel("6 blocks · 4h 45m planned")
         date_label.setStyleSheet("""
             QLabel {
-                color: #888888;
-                font-size: 14px;
+                color: #8590a3;
+                font-size: 12px;
                 border: none;
                 background: transparent;
             }
@@ -105,7 +110,7 @@ class SchedulePage(QWidget):
             right_arrow.setIcon(QIcon("assets/chevron-right.svg"))
             right_arrow.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             right_arrow.setGraphicsEffect(colorize_effect)
         except:
             right_arrow.setText(">")
@@ -113,11 +118,11 @@ class SchedulePage(QWidget):
             QPushButton {
                 background-color: transparent;
                 border: none;
-                color: #ffffff;
-                font-size: 20px;
+                color: #2f3b52;
+                font-size: 16px;
             }
         """)
-        right_arrow.setFixedSize(24, 24)
+        right_arrow.setFixedSize(20, 20)
         
         left_layout.addWidget(left_arrow)
         left_layout.addLayout(date_layout)
@@ -136,14 +141,14 @@ class SchedulePage(QWidget):
         toggle = QFrame()
         toggle.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 8px;
+                background-color: rgba(255, 255, 255, 0.78);
+                border: 1px solid #dbe2ee;
+                border-radius: 10px;
             }
         """)
         
         layout = QHBoxLayout(toggle)
-        layout.setContentsMargins(4, 4, 4, 4)
+        layout.setContentsMargins(3, 3, 3, 3)
         layout.setSpacing(0)
         
         # Day button (active)
@@ -151,12 +156,12 @@ class SchedulePage(QWidget):
         day_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         day_btn.setStyleSheet("""
             QPushButton {
-                background-color: #238636;
-                color: #ffffff;
+                background-color: #ffffff;
+                color: #334058;
                 border: none;
-                border-radius: 6px;
-                padding: 6px 16px;
-                font-size: 13px;
+                border-radius: 7px;
+                padding: 5px 13px;
+                font-size: 12px;
                 font-weight: 500;
             }
         """)
@@ -167,15 +172,15 @@ class SchedulePage(QWidget):
         week_btn.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
-                color: #888888;
+                color: #7e889b;
                 border: none;
-                border-radius: 6px;
-                padding: 6px 16px;
-                font-size: 13px;
+                border-radius: 7px;
+                padding: 5px 13px;
+                font-size: 12px;
                 font-weight: 500;
             }
             QPushButton:hover {
-                color: #ffffff;
+                color: #445066;
             }
         """)
         
@@ -188,15 +193,15 @@ class SchedulePage(QWidget):
         timeline = QFrame()
         timeline.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #e1e6f0;
+                border-radius: 10px;
             }
         """)
         
         layout = QVBoxLayout(timeline)
-        layout.setContentsMargins(16, 12, 16, 12)
-        layout.setSpacing(8)
+        layout.setContentsMargins(12, 10, 12, 10)
+        layout.setSpacing(6)
         
         # Top row: Timeline label and scheduled time
         top_row = QHBoxLayout()
@@ -205,7 +210,7 @@ class SchedulePage(QWidget):
         timeline_label = QLabel("Timeline")
         timeline_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #8a95a8;
                 font-size: 12px;
                 border: none;
                 background: transparent;
@@ -215,7 +220,7 @@ class SchedulePage(QWidget):
         scheduled_label = QLabel("5h scheduled")
         scheduled_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #8a95a8;
                 font-size: 12px;
                 border: none;
                 background: transparent;
@@ -228,11 +233,11 @@ class SchedulePage(QWidget):
         
         # Bottom row: Track with colored blocks
         track = QFrame()
-        track.setFixedHeight(30)
+        track.setFixedHeight(24)
         track.setStyleSheet("""
             QFrame {
-                background-color: rgba(30, 30, 30, 0.6);
-                border-radius: 15px;
+                background-color: rgba(245, 248, 253, 0.9);
+                border-radius: 12px;
             }
         """)
         
@@ -247,7 +252,7 @@ class SchedulePage(QWidget):
             QFrame {
                 background-color: rgba(175, 82, 222, 0.6);
                 border: none;
-                border-radius: 15px;
+                border-radius: 10px;
             }
         """)
         track_layout.addWidget(purple_block)
@@ -262,7 +267,7 @@ class SchedulePage(QWidget):
             QFrame {
                 background-color: rgba(162, 132, 94, 0.6);
                 border: none;
-                border-radius: 15px;
+                border-radius: 10px;
             }
         """)
         track_layout.addWidget(brown_block)
@@ -271,10 +276,10 @@ class SchedulePage(QWidget):
         
         # Current time indicator
         current_time = QFrame()
-        current_time.setFixedSize(2, 30)
+        current_time.setFixedSize(2, 24)
         current_time.setStyleSheet("""
             QFrame {
-                background-color: #FF3B30;
+                background-color: #f44e4e;
                 border-radius: 1px;
             }
         """)
@@ -303,12 +308,12 @@ class SchedulePage(QWidget):
                 border: none;
             }
             QScrollBar::handle:vertical {
-                background-color: rgba(255, 255, 255, 0.2);
+                background-color: rgba(113, 126, 149, 0.28);
                 border-radius: 3px;
                 min-height: 20px;
             }
             QScrollBar::handle:vertical:hover {
-                background-color: rgba(255, 255, 255, 0.3);
+                background-color: rgba(113, 126, 149, 0.4);
             }
             QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
                 height: 0px;
@@ -326,14 +331,14 @@ class SchedulePage(QWidget):
         
         container_layout = QVBoxLayout(container)
         container_layout.setContentsMargins(0, 0, 0, 0)
-        container_layout.setSpacing(12)
+        container_layout.setSpacing(8)
         
         # Sample tasks
         tasks = [
-            ("9:00", "12:00", "Build calendar UI", "Coding · 3h", "#AF52DE"),
-            ("13:00", "14:30", "Review PRs", "Review · 1.5h", "#FF3B30"),
-            ("15:00", "16:00", "Team meeting", "Meeting · 1h", "#FF9500"),
-            ("16:30", "18:00", "Documentation", "Writing · 1.5h", "#34C759")
+            ("", "", "Landing Page", "Drag to schedule", "#9aa5b9"),
+            ("", "", "CLOUD AI working", "Drag to schedule", "#9aa5b9"),
+            ("", "", "UI fixes", "Drag to schedule", "#9aa5b9"),
+            ("", "", "dont get plan your day unless check youtube etc??", "Drag to schedule", "#9aa5b9")
         ]
         
         for start_time, end_time, title, meta, color in tasks:
@@ -350,15 +355,15 @@ class SchedulePage(QWidget):
         item = QFrame()
         item.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.82);
+                border: 1px solid #e1e6f0;
+                border-radius: 10px;
             }
         """)
         
         layout = QHBoxLayout(item)
-        layout.setContentsMargins(16, 16, 16, 16)
-        layout.setSpacing(16)
+        layout.setContentsMargins(12, 10, 12, 10)
+        layout.setSpacing(10)
         
         # Time column
         time_layout = QVBoxLayout()
@@ -368,7 +373,7 @@ class SchedulePage(QWidget):
         start_label = QLabel(start_time)
         start_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #6d7890;
                 font-size: 16px;
                 font-weight: bold;
                 border: none;
@@ -379,7 +384,7 @@ class SchedulePage(QWidget):
         end_label = QLabel(end_time)
         end_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #a0aabc;
                 font-size: 13px;
                 border: none;
                 background: transparent;
@@ -406,7 +411,7 @@ class SchedulePage(QWidget):
         title_label = QLabel(title)
         title_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #334057;
                 font-size: 16px;
                 font-weight: 500;
                 border: none;
@@ -432,13 +437,13 @@ class SchedulePage(QWidget):
         try:
             checkmark.setPixmap(QIcon("assets/check.svg").pixmap(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             checkmark.setGraphicsEffect(colorize_effect)
         except:
             checkmark.setText("✓")
         checkmark.setStyleSheet("""
             QLabel {
-                color: #444444;
+                color: #909aab;
                 font-size: 18px;
                 border: none;
                 background: transparent;
@@ -460,16 +465,17 @@ class SchedulePage(QWidget):
         fab.setFocusPolicy(Qt.FocusPolicy.NoFocus)  # Prevent focus taking
         fab.setStyleSheet("""
             QPushButton {
-                background-color: #3399FF;
+                background-color: #ffffff;
+                border: 1px solid #dfe5ef;
                 color: white;
                 border-radius: 30px;
                 font-size: 32px;
                 font-weight: normal;
-                border: none;
+                color: #6e7b93;
                 padding-bottom: 4px;
             }
             QPushButton:hover {
-                background-color: #4DB8FF;
+                background-color: #f3f6fb;
             }
         """)
         

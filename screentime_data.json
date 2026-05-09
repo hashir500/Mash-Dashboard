@@ -1,8 +1,8 @@
 {
   "daily_data": {
     "2026-04-28": {
-      "total_minutes": 141,
-      "focused_minutes": 42,
+      "total_minutes": 164,
+      "focused_minutes": 49,
       "date": "2026-04-28"
     },
     "2026-04-27": {
@@ -34,14 +34,69 @@
       "total_minutes": 0,
       "focused_minutes": 0,
       "date": "2026-04-22"
+    },
+    "2026-04-29": {
+      "total_minutes": 143,
+      "focused_minutes": 42,
+      "date": "2026-04-29"
+    },
+    "2026-04-30": {
+      "total_minutes": 216,
+      "focused_minutes": 64,
+      "date": "2026-04-30"
+    },
+    "2026-05-03": {
+      "total_minutes": 273,
+      "focused_minutes": 81,
+      "date": "2026-05-03"
+    },
+    "2026-05-02": {
+      "total_minutes": 0,
+      "focused_minutes": 0,
+      "date": "2026-05-02"
+    },
+    "2026-05-01": {
+      "total_minutes": 236,
+      "focused_minutes": 70,
+      "date": "2026-05-01"
+    },
+    "2026-05-09": {
+      "total_minutes": 96,
+      "focused_minutes": 28,
+      "date": "2026-05-09"
+    },
+    "2026-05-08": {
+      "total_minutes": 609,
+      "focused_minutes": 182,
+      "date": "2026-05-08"
+    },
+    "2026-05-07": {
+      "total_minutes": 491,
+      "focused_minutes": 147,
+      "date": "2026-05-07"
+    },
+    "2026-05-06": {
+      "total_minutes": 0,
+      "focused_minutes": 0,
+      "date": "2026-05-06"
+    },
+    "2026-05-05": {
+      "total_minutes": 239,
+      "focused_minutes": 71,
+      "date": "2026-05-05"
+    },
+    "2026-05-04": {
+      "total_minutes": 145,
+      "focused_minutes": 43,
+      "date": "2026-05-04"
     }
   },
   "app_usage": {
     "2026-04-28": {
-      "python3": 6.492866666666668,
-      "windsurf": 13.627716666666668,
-      "chromium": 50.81666666666666,
-      "": 0.38730000000000003,
+      "python3": 10.205516666666664,
+      "": 0.8528666666666666,
+      "windsurf": 30.72510000000001,
+      "chromium": 51.352399999999996,
       "gnome-terminal-server": 1.9541499999999998,
       "Gjs": 0.7934333333333333,
       "Chromium": 53.74298333333333,
@@ -50,10 +105,465 @@
       "main_pyqt.py": 3.259533333333333,
       "extension-manager": 0.3381166666666667,
       "org.gnome.Nautilus": 0.05213333333333334
+    },
+    "2026-04-29": {
+      "python3": 1.8168499999999999,
+      "": 4.666266666666666,
+      "chromium": 76.78708333333331,
+      "org.gnome.Nautilus": 0.37896666666666673,
+      "soffice": 0.12416666666666668,
+      "libreoffice-writer": 20.783066666666667
+    },
+    "2026-04-30": {
+      "python3": 0.6299666666666667,
+      "": 0.03605
+    },
+    "2026-05-03": {
+      "python3": 0.07005
+    },
+    "2026-05-09": {
+      "python3": 8.309750000000001,
+      "": 62.20683333333333,
+      "cursor": 16.339649999999995,
+      "chromium": 31.518283333333333,
+      "org.gnome.Nautilus": 0.12436666666666667,
+      "snap-store": 1.0773666666666666,
+      "windsurf": 28.345649999999996,
+      "Code": 11.097900000000003,
+      "Mash": 9.1003,
+      "antigravity": 0.5450833333333334,
+      "chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default": 0.16483333333333333
     }
   },
   "activity_timeline": [
     {
+      "title": "chromium",
+      "subtitle": "MacOS App Preferences UI Prompt - Google Gemini - ",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:02 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "(1) Instagram - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:02 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "MacOS App Preferences UI Prompt - Google Gemini - ",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:02 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "(1) Instagram - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:01 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "Google Gemini - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:00 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "\u200eGoogle Gemini - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "(1) Instagram - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "Instagram - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "MacOS App Preferences UI Prompt - Google Gemini - ",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:02 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "(1) Instagram - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:02 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "MacOS App Preferences UI Prompt - Google Gemini - ",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:02 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "(1) Instagram - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:01 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "Google Gemini - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "06:00 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "\u200eGoogle Gemini - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "(1) Instagram - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "Instagram - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:59 AM",
+      "date": "2026-05-09"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "07:56 AM",
+      "date": "2026-05-03"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "07:56 AM",
+      "date": "2026-05-03"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "07:56 AM",
+      "date": "2026-05-03"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:03 AM",
+      "date": "2026-04-30"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:03 AM",
+      "date": "2026-04-30"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:03 AM",
+      "date": "2026-04-30"
+    },
+    {
+      "title": "python3",
+      "subtitle": "Sync Complete",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:03 AM",
+      "date": "2026-04-30"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:03 AM",
+      "date": "2026-04-30"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:03 AM",
+      "date": "2026-04-30"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:03 AM",
+      "date": "2026-04-30"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:03 AM",
+      "date": "2026-04-30"
+    },
+    {
+      "title": "libreoffice-writer",
+      "subtitle": "research_proposal_updated.docx \u2014 LibreOffice Write",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:57 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Downloads",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:57 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:57 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:46 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:46 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "libreoffice-writer",
+      "subtitle": "research_proposal_updated.docx \u2014 LibreOffice Write",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:57 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Downloads",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:57 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:57 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:46 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:46 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "libreoffice-writer",
+      "subtitle": "research_proposal_updated.docx \u2014 LibreOffice Write",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:57 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Downloads",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:57 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "org.gnome.Nautilus",
+      "subtitle": "Home",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:57 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:46 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:46 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "ActivityWatch - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "chromium",
+      "subtitle": "New Tab - Chromium",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "python3",
+      "subtitle": "main_pyqt.py",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "",
+      "subtitle": "Active",
+      "icon": "assets/laptop.svg",
+      "timestamp": "05:45 AM",
+      "date": "2026-04-29"
+    },
+    {
       "title": "org.gnome.Nautilus",
       "subtitle": "Home",
       "icon": "assets/laptop.svg",
@@ -322,439 +832,23 @@
     {
       "title": "Chromium",
       "subtitle": "New Tab - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "org.gnome.Nautilus",
-      "subtitle": "Home",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Gjs",
-      "subtitle": "Desktop Icons 1",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "extension-manager",
-      "subtitle": "Extension Manager",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "New Tab - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "org.gnome.Nautilus",
-      "subtitle": "Home",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Gjs",
-      "subtitle": "Desktop Icons 1",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "extension-manager",
-      "subtitle": "Extension Manager",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "New Tab - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "org.gnome.Nautilus",
-      "subtitle": "Home",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Gjs",
-      "subtitle": "Desktop Icons 1",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "extension-manager",
-      "subtitle": "Extension Manager",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "New Tab - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "org.gnome.Nautilus",
-      "subtitle": "Home",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Gjs",
-      "subtitle": "Desktop Icons 1",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "extension-manager",
-      "subtitle": "Extension Manager",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "New Tab - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "org.gnome.Nautilus",
-      "subtitle": "Home",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Gjs",
-      "subtitle": "Desktop Icons 1",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "extension-manager",
-      "subtitle": "Extension Manager",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "New Tab - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "org.gnome.Nautilus",
-      "subtitle": "Home",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Gjs",
-      "subtitle": "Desktop Icons 1",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "extension-manager",
-      "subtitle": "Extension Manager",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "ActivityWatch - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:01 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "Chromium",
-      "subtitle": "New Tab - Chromium",
-      "icon": "assets/laptop.svg",
-      "timestamp": "02:00 PM",
-      "date": "2026-04-28"
-    },
-    {
-      "title": "unknown",
-      "subtitle": "unknown",
       "icon": "assets/laptop.svg",
       "timestamp": "02:00 PM",
       "date": "2026-04-28"
     }
   ],
   "heatmap_data": {
+    "2026-05-09": 1,
+    "2026-05-08": 4,
+    "2026-05-07": 4,
+    "2026-05-06": 0,
+    "2026-05-05": 2,
+    "2026-05-04": 2,
+    "2026-05-03": 3,
+    "2026-05-02": 0,
+    "2026-05-01": 2,
+    "2026-04-30": 2,
+    "2026-04-29": 2,
     "2026-04-28": 2,
     "2026-04-27": 0,
     "2026-04-26": 0,
@@ -1108,17 +1202,6 @@
     "2025-05-13": 0,
     "2025-05-12": 0,
     "2025-05-11": 0,
-    "2025-05-10": 0,
-    "2025-05-09": 0,
-    "2025-05-08": 0,
-    "2025-05-07": 0,
-    "2025-05-06": 0,
-    "2025-05-05": 0,
-    "2025-05-04": 0,
-    "2025-05-03": 0,
-    "2025-05-02": 0,
-    "2025-05-01": 0,
-    "2025-04-30": 0,
-    "2025-04-29": 0
+    "2025-05-10": 0
   }
 }

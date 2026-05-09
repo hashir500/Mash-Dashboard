@@ -28,15 +28,20 @@ class HeatmapCell(QPushButton):
 class ScreenTimePage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setStyleSheet("background-color: transparent;")
+        self.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+                color: #1f2a3d;
+            }
+        """)
         
         # Generate sample data if none exists
         if not tracker.data["heatmap_data"]:
             tracker.generate_sample_data()
         
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 16, 0, 16)
-        layout.setSpacing(20)
+        layout.setContentsMargins(10, 8, 10, 10)
+        layout.setSpacing(10)
         
         # Header
         header = self.create_header()
@@ -73,8 +78,8 @@ class ScreenTimePage(QWidget):
         container = QFrame()
         container.setStyleSheet("""
             QFrame {
-                background-color: #161b22;
-                border: 1px solid #30363d;
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #dbe2ee;
                 border-radius: 12px;
             }
         """)
@@ -87,7 +92,7 @@ class ScreenTimePage(QWidget):
         header = QLabel("TODAY ACTIVITY")
         header.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 13px;
                 font-weight: 500;
                 border: none;
@@ -137,7 +142,7 @@ class ScreenTimePage(QWidget):
         title = QLabel("Screen Time")
         title.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2d394f;
                 font-size: 28px;
                 font-weight: bold;
                 border: none;
@@ -148,7 +153,7 @@ class ScreenTimePage(QWidget):
         subtitle = QLabel("Today")
         subtitle.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 14px;
                 border: none;
                 background: transparent;
@@ -202,8 +207,8 @@ class ScreenTimePage(QWidget):
         toggle = QFrame()
         toggle.setStyleSheet("""
             QFrame {
-                background-color: #161b22;
-                border: 1px solid #30363d;
+                background-color: rgba(255, 255, 255, 0.78);
+                border: 1px solid #dbe2ee;
                 border-radius: 8px;
             }
         """)
@@ -218,7 +223,7 @@ class ScreenTimePage(QWidget):
         day_btn.setStyleSheet("""
             QPushButton {
                 background-color: #238636;
-                color: #ffffff;
+                color: #2d394f;
                 border: none;
                 border-radius: 6px;
                 padding: 6px 16px;
@@ -233,7 +238,7 @@ class ScreenTimePage(QWidget):
         week_btn.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
-                color: #888888;
+                color: #7f899c;
                 border: none;
                 border-radius: 6px;
                 padding: 6px 16px;
@@ -241,7 +246,7 @@ class ScreenTimePage(QWidget):
                 font-weight: 500;
             }
             QPushButton:hover {
-                color: #ffffff;
+                color: #2d394f;
             }
         """)
         
@@ -263,8 +268,8 @@ class ScreenTimePage(QWidget):
         heatmap_frame = QFrame()
         heatmap_frame.setStyleSheet("""
             QFrame {
-                background-color: #161b22;
-                border: 1px solid #30363d;
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #dbe2ee;
                 border-radius: 12px;
             }
         """)
@@ -288,8 +293,11 @@ class ScreenTimePage(QWidget):
             month_key = date.strftime("%Y-%m")
             monthly_data[month_key].append(entry)
         
-        # Sort months chronologically (include all months with data)
-        sorted_months = sorted(monthly_data.keys())
+        # Sort months in calendar order: Jan, Feb, ..., Dec
+        # Show current year months Jan-Dec, including empty ones for future months
+        current_year = datetime.now().year
+        months_order = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+        sorted_months = [f"{current_year}-{m}" for m in months_order]
         
         # Colors for activity levels
         colors = [
@@ -305,9 +313,7 @@ class ScreenTimePage(QWidget):
         months_container.setAlignment(Qt.AlignmentFlag.AlignLeft)
         
         for month_key in sorted_months:
-            month_data = monthly_data[month_key]
-            if not month_data:
-                continue
+            month_data = monthly_data.get(month_key, [])
             
             # Create month container
             month_widget = QWidget()
@@ -322,7 +328,7 @@ class ScreenTimePage(QWidget):
             month_label = QLabel(month_name)
             month_label.setStyleSheet("""
                 QLabel {
-                    color: #666666;
+                    color: #7f899c;
                     font-size: 10px;
                     border: none;
                     background: transparent;
@@ -336,9 +342,11 @@ class ScreenTimePage(QWidget):
             month_grid.setSpacing(2)
             month_grid.setContentsMargins(0, 0, 0, 0)
             
-            # Determine starting day of week for this month
-            first_day = datetime.strptime(month_data[0]["date"], "%Y-%m-%d")
-            start_day = first_day.weekday()  # Monday=0, Sunday=6
+            # Determine starting day of week and number of days
+            import calendar
+            first_day_of_month = datetime.strptime(month_key + "-01", "%Y-%m-%d")
+            start_day = first_day_of_month.weekday()  # Monday=0, Sunday=6
+            _, num_days = calendar.monthrange(first_day_of_month.year, first_day_of_month.month)
             
             # Add empty cells for days before the first day of the month
             for i in range(start_day):
@@ -350,13 +358,20 @@ class ScreenTimePage(QWidget):
             # Add cells for each day in the month
             col = start_day
             row = 0
-            for entry in month_data:
-                level = entry["level"]
-                date_str = entry["date"]
+            for day_num in range(1, num_days + 1):
+                date_str = f"{month_key}-{day_num:02d}"
                 
-                # Get daily stats
-                total_minutes = tracker.data["daily_data"].get(date_str, {}).get("total_minutes", 0)
-                focused_minutes = tracker.data["daily_data"].get(date_str, {}).get("focused_minutes", 0)
+                # Get level from heatmap data
+                level = 0
+                total_minutes = 0
+                focused_minutes = 0
+                if month_data:
+                    for entry in month_data:
+                        if entry["date"] == date_str:
+                            level = entry["level"]
+                            total_minutes = tracker.data["daily_data"].get(date_str, {}).get("total_minutes", 0)
+                            focused_minutes = tracker.data["daily_data"].get(date_str, {}).get("focused_minutes", 0)
+                            break
                 
                 cell = HeatmapCell(date_str, total_minutes, focused_minutes)
                 cell.setFixedSize(11, 11)
@@ -364,7 +379,7 @@ class ScreenTimePage(QWidget):
                 
                 # Map level to color
                 if level == 0:
-                    color = "rgba(255, 255, 255, 0.05)"  # Empty
+                    color = "rgba(95, 107, 130, 0.16)"  # Empty
                 elif level == 1:
                     color = colors[0]
                 elif level == 2:
@@ -400,7 +415,7 @@ class ScreenTimePage(QWidget):
         self.hover_info_label = QLabel()
         self.hover_info_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 12px;
                 border: none;
                 background: transparent;
@@ -416,7 +431,7 @@ class ScreenTimePage(QWidget):
         less_label = QLabel("Less")
         less_label.setStyleSheet("""
             QLabel {
-                color: #666666;
+                color: #7f899c;
                 font-size: 10px;
                 border: none;
                 background: transparent;
@@ -426,7 +441,7 @@ class ScreenTimePage(QWidget):
         legend_layout.addWidget(less_label)
         
         # Add color squares from empty to max
-        legend_colors = ["rgba(255, 255, 255, 0.05)", "#0e4429", "#006d32", "#26a641", "#39d353"]
+        legend_colors = ["rgba(95, 107, 130, 0.16)", "#80b68d", "#5ca66d", "#3f9156", "#2d7f45"]
         for color in legend_colors:
             square = QFrame()
             square.setFixedSize(10, 10)
@@ -441,7 +456,7 @@ class ScreenTimePage(QWidget):
         more_label = QLabel("More")
         more_label.setStyleSheet("""
             QLabel {
-                color: #666666;
+                color: #7f899c;
                 font-size: 10px;
                 border: none;
                 background: transparent;
@@ -462,8 +477,8 @@ class ScreenTimePage(QWidget):
         container = QFrame()
         container.setStyleSheet("""
             QFrame {
-                background-color: #161b22;
-                border: 1px solid #30363d;
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #dbe2ee;
                 border-radius: 12px;
             }
         """)
@@ -476,7 +491,7 @@ class ScreenTimePage(QWidget):
         header = QLabel("TODAY ACTIVITY")
         header.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 13px;
                 font-weight: 500;
                 border: none;
@@ -515,7 +530,7 @@ class ScreenTimePage(QWidget):
         item.setStyleSheet("""
             QWidget {
                 background-color: transparent;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+                border-bottom: 1px solid #e7ecf3;
             }
         """)
         item.setFixedHeight(50)
@@ -530,7 +545,7 @@ class ScreenTimePage(QWidget):
         icon_label.setStyleSheet("border: none; background: transparent;")
         icon_label.setPixmap(QIcon(icon_path).pixmap(14, 14))
         colorize_effect = QGraphicsColorizeEffect()
-        colorize_effect.setColor(QColor("#666666"))
+        colorize_effect.setColor(QColor("#7f899c"))
         icon_label.setGraphicsEffect(colorize_effect)
         
         # Text
@@ -540,7 +555,7 @@ class ScreenTimePage(QWidget):
         title_label = QLabel(title)
         title_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2f3a50;
                 font-size: 13px;
                 border: none;
                 background: transparent;
@@ -550,7 +565,7 @@ class ScreenTimePage(QWidget):
         subtitle_label = QLabel(subtitle)
         subtitle_label.setStyleSheet("""
             QLabel {
-                color: #666666;
+                color: #7f899c;
                 font-size: 11px;
                 border: none;
                 background: transparent;
@@ -564,7 +579,7 @@ class ScreenTimePage(QWidget):
         time_label = QLabel(time)
         time_label.setStyleSheet("""
             QLabel {
-                color: #666666;
+                color: #7f899c;
                 font-size: 11px;
                 border: none;
                 background: transparent;
@@ -583,7 +598,7 @@ class ScreenTimePage(QWidget):
         item.setStyleSheet("""
             QWidget {
                 background-color: transparent;
-                border-bottom: 1px solid #30363d;
+                border-bottom: 1px solid #e7ecf3;
             }
         """)
         item.setFixedHeight(85)
@@ -627,7 +642,7 @@ class ScreenTimePage(QWidget):
         time_label = QLabel(time)
         time_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 12px;
                 border: none;
                 background: transparent;
@@ -648,8 +663,8 @@ class ScreenTimePage(QWidget):
         else:
             card.setStyleSheet("""
                 QFrame {
-                    background-color: #161b22;
-                    border: 1px solid #30363d;
+                    background-color: rgba(255, 255, 255, 0.84);
+                    border: 1px solid #dbe2ee;
                     border-radius: 10px;
                 }
             """)
@@ -676,7 +691,7 @@ class ScreenTimePage(QWidget):
         icon_label.setStyleSheet("border: none; background: transparent;")
         icon_label.setPixmap(QIcon(icon_path).pixmap(20, 20))
         colorize_effect = QGraphicsColorizeEffect()
-        colorize_effect.setColor(Qt.GlobalColor.white)
+        colorize_effect.setColor(Qt.GlobalColor.black)
         icon_label.setGraphicsEffect(colorize_effect)
         
         icon_layout.addWidget(icon_label)
@@ -688,7 +703,7 @@ class ScreenTimePage(QWidget):
         title_label = QLabel(title)
         title_label.setStyleSheet(f"""
             QLabel {{
-                color: #ffffff;
+                color: #2f3a50;
                 font-size: 14px;
                 font-weight: 500;
                 border: none;
@@ -699,7 +714,7 @@ class ScreenTimePage(QWidget):
         subtitle_label = QLabel(subtitle)
         subtitle_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 12px;
                 border: none;
                 background: transparent;
@@ -716,7 +731,7 @@ class ScreenTimePage(QWidget):
         duration_label = QLabel(duration)
         duration_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 13px;
                 font-weight: 500;
                 border: none;
@@ -775,8 +790,8 @@ class ScreenTimePage(QWidget):
         panel = QFrame()
         panel.setStyleSheet("""
             QFrame {
-                background-color: #161b22;
-                border: 1px solid #30363d;
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #dbe2ee;
                 border-radius: 12px;
             }
         """)
@@ -789,7 +804,7 @@ class ScreenTimePage(QWidget):
         header = QLabel("Focused time")
         header.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 13px;
                 font-weight: 500;
                 border: none;
@@ -807,7 +822,7 @@ class ScreenTimePage(QWidget):
         time_label = QLabel(tracker.format_minutes(focused_minutes))
         time_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2d394f;
                 font-size: 28px;
                 font-weight: 600;
                 border: none;
@@ -820,7 +835,7 @@ class ScreenTimePage(QWidget):
         total_label = QLabel(f"Total: {tracker.format_minutes(total_minutes)}")
         total_label.setStyleSheet("""
             QLabel {
-                color: #666666;
+                color: #7f899c;
                 font-size: 12px;
                 border: none;
                 background: transparent;
@@ -832,7 +847,7 @@ class ScreenTimePage(QWidget):
         blocks_label = QLabel("3/3 blocks done")
         blocks_label.setStyleSheet("""
             QLabel {
-                color: #666666;
+                color: #7f899c;
                 font-size: 11px;
                 border: none;
                 background: transparent;
@@ -846,8 +861,8 @@ class ScreenTimePage(QWidget):
         panel = QFrame()
         panel.setStyleSheet("""
             QFrame {
-                background-color: #161b22;
-                border: 1px solid #30363d;
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #dbe2ee;
                 border-radius: 12px;
             }
         """)
@@ -860,7 +875,7 @@ class ScreenTimePage(QWidget):
         header = QLabel("Top apps")
         header.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 13px;
                 font-weight: 500;
                 border: none;
@@ -919,7 +934,7 @@ class ScreenTimePage(QWidget):
             icon_label.setStyleSheet("border: none; background: transparent;")
             icon_label.setPixmap(QIcon(icon).pixmap(24, 24))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             icon_label.setGraphicsEffect(colorize_effect)
             
             app_layout.addWidget(icon_label)

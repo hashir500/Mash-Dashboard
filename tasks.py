@@ -14,25 +14,28 @@ class TabNavigation(QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(8)
         
-        # Glassmorphic tab container
+        # Segmented control
         tab_container = QFrame()
         tab_container.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.78);
+                border: 1px solid #dde3ee;
+                border-radius: 10px;
             }
         """)
         
         tab_layout = QHBoxLayout(tab_container)
-        tab_layout.setContentsMargins(4, 4, 4, 4)
+        tab_layout.setContentsMargins(3, 3, 3, 3)
         tab_layout.setSpacing(4)
         
         # Tab buttons
         tabs = [
-            ("Tasks", True),
-            ("Focus", False),
-            ("History", False)
+            ("Open", True),
+            ("Done", False),
+            ("Trash", False),
+            ("Workspace", False),
+            ("All", False),
+            ("Today", False)
         ]
         
         for tab_name, active in tabs:
@@ -41,29 +44,29 @@ class TabNavigation(QWidget):
             if active:
                 btn.setStyleSheet("""
                     QPushButton {
-                        background-color: rgba(255, 255, 255, 0.15);
-                        color: #ffffff;
+                        background-color: #ffffff;
+                        color: #344159;
                         border: none;
-                        padding: 8px 16px;
+                        padding: 6px 10px;
                         border-radius: 8px;
-                        font-size: 14px;
-                        font-weight: 500;
+                        font-size: 12px;
+                        font-weight: 600;
                     }
                 """)
             else:
                 btn.setStyleSheet("""
                     QPushButton {
                         background-color: transparent;
-                        color: #888888;
+                        color: #7d8799;
                         border: none;
-                        padding: 8px 16px;
+                        padding: 6px 10px;
                         border-radius: 8px;
-                        font-size: 14px;
+                        font-size: 12px;
                         font-weight: 500;
                     }
                     QPushButton:hover {
-                        color: #ffffff;
-                        background-color: rgba(255, 255, 255, 0.05);
+                        color: #3f4a60;
+                        background-color: #eef2f9;
                     }
                 """)
             tab_layout.addWidget(btn)
@@ -86,14 +89,14 @@ class TaskInput(QWidget):
         container = QFrame()
         container.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #dde3ee;
+                border-radius: 10px;
             }
         """)
         
         container_layout = QHBoxLayout(container)
-        container_layout.setContentsMargins(16, 12, 16, 12)
+        container_layout.setContentsMargins(12, 10, 12, 10)
         container_layout.setSpacing(12)
         
         # Plus icon
@@ -103,7 +106,7 @@ class TaskInput(QWidget):
             plus_btn.setIcon(QIcon("assets/plus.svg"))
             plus_btn.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             plus_btn.setGraphicsEffect(colorize_effect)
         except:
             plus_btn.setText("+")
@@ -111,7 +114,7 @@ class TaskInput(QWidget):
             QPushButton {
                 background-color: transparent;
                 border: none;
-                color: #ffffff;
+                color: #3d4961;
                 font-size: 20px;
             }
         """)
@@ -124,12 +127,12 @@ class TaskInput(QWidget):
             QLineEdit {
                 background-color: transparent;
                 border: none;
-                color: #ffffff;
+                color: #39455d;
                 font-size: 14px;
                 padding: 4px;
             }
             QLineEdit::placeholder {
-                color: #666666;
+                color: #95a0b3;
             }
         """)
         
@@ -148,27 +151,27 @@ class TaskItem(QWidget):
         wrapper = QFrame()
         wrapper.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #e0e6f0;
                 border-radius: 10px;
             }
         """)
         wrapper.setStyleSheet(wrapper.styleSheet() + """
             QFrame:hover {
-                background-color: rgba(255, 255, 255, 0.08);
+                background-color: #f9fbff;
             }
         """)
         
         wrapper_layout = QHBoxLayout(wrapper)
-        wrapper_layout.setContentsMargins(16, 16, 16, 16)
-        wrapper_layout.setSpacing(16)
+        wrapper_layout.setContentsMargins(12, 10, 12, 10)
+        wrapper_layout.setSpacing(12)
         
         # Radio button for completion
         radio = QRadioButton()
         radio.setStyleSheet("""
             QRadioButton {
                 background-color: transparent;
-                border: 2px solid #666666;
+                border: 2px solid #c8d0de;
                 border-radius: 10px;
                 width: 20px;
                 height: 20px;
@@ -178,11 +181,11 @@ class TaskItem(QWidget):
                 height: 20px;
                 border-radius: 10px;
                 background-color: transparent;
-                border: 2px solid #666666;
+                border: 2px solid #c8d0de;
             }
             QRadioButton::indicator:checked {
-                background-color: #30D158;
-                border: 2px solid #30D158;
+                background-color: #5f7cff;
+                border: 2px solid #5f7cff;
             }
         """)
         radio.setFixedSize(20, 20)
@@ -195,7 +198,7 @@ class TaskItem(QWidget):
         title_label = QLabel(title)
         title_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2f3a50;
                 font-size: 16px;
                 font-weight: 500;
                 border: none;
@@ -233,7 +236,7 @@ class TaskItem(QWidget):
             edit_btn.setIcon(QIcon("assets/edit.svg"))
             edit_btn.setIconSize(QSize(16, 16))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             edit_btn.setGraphicsEffect(colorize_effect)
         except:
             edit_btn.setText("✎")
@@ -241,7 +244,7 @@ class TaskItem(QWidget):
             QPushButton {
                 background-color: transparent;
                 border: none;
-                color: #ffffff;
+                color: #4f5c74;
                 font-size: 16px;
             }
         """)
@@ -267,11 +270,11 @@ class TaskItem(QWidget):
         pill.setStyleSheet(f"""
             QLabel {{
                 background-color: {bg_color};
-                color: #ffffff;
+                color: #2f3a50;
                 padding: 4px 10px;
                 border-radius: 12px;
                 font-size: 12px;
-                border: none;
+                border: 1px solid rgba(120, 133, 158, 0.15);
             }}
         """)
         return pill
@@ -280,19 +283,24 @@ class TaskItem(QWidget):
 class TasksPage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setStyleSheet("background-color: transparent;")
+        self.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+                color: #1f2a3d;
+            }
+        """)
         
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 16, 0, 16)
-        layout.setSpacing(20)
+        layout.setContentsMargins(10, 8, 10, 10)
+        layout.setSpacing(12)
         
         # Tasks header
         tasks_header = QLabel("Tasks")
         tasks_header.setStyleSheet("""
             QLabel {
-                color: #ffffff;
-                font-size: 24px;
-                font-weight: bold;
+                color: #2d394f;
+                font-size: 23px;
+                font-weight: 700;
                 border: none;
                 background: transparent;
             }
@@ -304,11 +312,11 @@ class TasksPage(QWidget):
         layout.addWidget(tab_nav)
         
         # TO DO count
-        todo_count = QLabel("TO DO (4)")
+        todo_count = QLabel("RECENTLY ACTIVE")
         todo_count.setStyleSheet("""
             QLabel {
-                color: #888888;
-                font-size: 14px;
+                color: #7e8799;
+                font-size: 12px;
                 font-weight: 500;
                 border: none;
                 background: transparent;
@@ -322,7 +330,7 @@ class TasksPage(QWidget):
         
         # Task list
         task_list = QVBoxLayout()
-        task_list.setSpacing(10)
+        task_list.setSpacing(8)
         
         # Sample tasks
         tasks = [

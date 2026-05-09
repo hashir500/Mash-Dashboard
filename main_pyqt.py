@@ -6,9 +6,9 @@ from datetime import datetime
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(script_dir)
 
-from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
-                             QHBoxLayout, QLabel, QPushButton, QFrame, 
-                             QStackedWidget, QGraphicsColorizeEffect, QSizePolicy)
+from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
+                             QHBoxLayout, QLabel, QPushButton, QFrame, QLineEdit,
+                             QStackedWidget, QGraphicsColorizeEffect)
 from PyQt6.QtCore import Qt, QSize, QPoint
 from PyQt6.QtGui import QIcon, QColor, QFont
 from screentime import ScreenTimePage
@@ -22,7 +22,7 @@ from think import ThinkPage
 class TitleBar(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setFixedHeight(50)
+        self.setFixedHeight(54)
         self.setStyleSheet("""
             QWidget {
                 background-color: transparent;
@@ -30,46 +30,111 @@ class TitleBar(QWidget):
         """)
         
         layout = QHBoxLayout(self)
-        layout.setContentsMargins(16, 8, 16, 8)
-        layout.setSpacing(12)
-        
-        layout.addStretch()
-        
-        # Status indicator
-        status_layout = QHBoxLayout()
-        status_layout.setSpacing(8)
-        
-        status_dot = QLabel()
-        status_dot.setFixedSize(8, 8)
-        status_dot.setStyleSheet("""
-            QLabel {
-                background-color: #238636;
-                border-radius: 4px;
+        layout.setContentsMargins(12, 6, 12, 6)
+        layout.setSpacing(8)
+
+        # macOS traffic lights
+        lights = QHBoxLayout()
+        lights.setSpacing(6)
+        self.close_btn = QPushButton()
+        self.minimize_btn = QPushButton()
+        self.maximize_btn = QPushButton()
+
+        for btn, color in (
+            (self.close_btn, "#FF5F57"),
+            (self.minimize_btn, "#FEBB2E"),
+            (self.maximize_btn, "#28C840"),
+        ):
+            btn.setFixedSize(12, 12)
+            btn.setStyleSheet(f"""
+                QPushButton {{
+                    background-color: {color};
+                    border: none;
+                    border-radius: 6px;
+                }}
+                QPushButton:hover {{
+                    border: 1px solid rgba(0, 0, 0, 0.12);
+                }}
+            """)
+            lights.addWidget(btn)
+        layout.addLayout(lights)
+
+        # Command bar
+        cmd_bar = QFrame()
+        cmd_bar.setFixedHeight(28)
+        cmd_bar.setStyleSheet("""
+            QFrame {
+                background-color: #ffffff;
+                border: 1px solid #d7dce3;
+                border-radius: 10px;
             }
         """)
-        
-        status_label = QLabel("Mash")
-        status_label.setStyleSheet("color: #ffffff; font-size: 13px; font-weight: 500; border: none; background: transparent;")
-        
+        cmd_layout = QHBoxLayout(cmd_bar)
+        cmd_layout.setContentsMargins(8, 0, 8, 0)
+        cmd_layout.setSpacing(6)
+
+        update_pill = QLabel("Update")
+        update_pill.setStyleSheet("""
+            QLabel {
+                background-color: #ebf3ff;
+                color: #3971ff;
+                border: 1px solid #cfdfff;
+                border-radius: 8px;
+                padding: 1px 7px;
+                font-size: 10px;
+                font-weight: 600;
+            }
+        """)
+        search_input = QLineEdit()
+        search_input.setPlaceholderText("Search commands  ⌘ O T")
+        search_input.setStyleSheet("""
+            QLineEdit {
+                border: none;
+                color: #495265;
+                font-size: 12px;
+                background: transparent;
+                padding: 0;
+            }
+        """)
+        cmd_layout.addWidget(update_pill)
+        cmd_layout.addWidget(search_input)
+        layout.addWidget(cmd_bar, 1)
+
+        right_layout = QHBoxLayout()
+        right_layout.setSpacing(6)
+
+        status_label = QLabel("Taby")
+        status_label.setStyleSheet("""
+            QLabel {
+                color: #3a465b;
+                font-size: 11px;
+                font-weight: 600;
+                padding: 3px 9px;
+                border: 1px solid #d9dee8;
+                border-radius: 10px;
+                background: #ffffff;
+            }
+        """)
+
         settings_btn = QPushButton()
         try:
             settings_btn.setIcon(QIcon("assets/settings.svg"))
             settings_btn.setIconSize(QSize(18, 18))
             # Colorize icon to white
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(QColor("#4f5d73"))
             settings_btn.setGraphicsEffect(colorize_effect)
         except:
             settings_btn.setText("⚙")
         settings_btn.setStyleSheet("""
             QPushButton {
-                background-color: transparent;
-                border: none;
+                background-color: #ffffff;
+                border: 1px solid #d9dee8;
                 padding: 4px;
-                border-radius: 4px;
+                border-radius: 8px;
             }
             QPushButton:hover {
-                background-color: rgba(255, 255, 255, 0.1);
+                background-color: #f2f5fa;
             }
         """)
         settings_btn.setFixedSize(28, 28)
@@ -80,59 +145,33 @@ class TitleBar(QWidget):
             expand_btn.setIconSize(QSize(18, 18))
             # Colorize icon to white
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(QColor("#4f5d73"))
             expand_btn.setGraphicsEffect(colorize_effect)
         except:
             expand_btn.setText("⤢")
         expand_btn.setStyleSheet("""
             QPushButton {
-                background-color: transparent;
-                border: none;
+                background-color: #ffffff;
+                border: 1px solid #d9dee8;
                 padding: 4px;
-                border-radius: 4px;
+                border-radius: 8px;
             }
             QPushButton:hover {
-                background-color: rgba(255, 255, 255, 0.1);
+                background-color: #f2f5fa;
             }
         """)
         expand_btn.setFixedSize(28, 28)
-        
-        cmd_badge = QLabel("⌘ K")
-        cmd_badge.setStyleSheet("""
-            QLabel {
-                background-color: #3a3a3a;
-                color: #888888;
-                padding: 4px 8px;
-                border-radius: 4px;
-                font-size: 11px;
-                border: none;
-            }
-        """)
-        
-        status_layout.addWidget(status_dot)
-        status_layout.addWidget(status_label)
-        status_layout.addWidget(settings_btn)
-        status_layout.addWidget(expand_btn)
-        status_layout.addWidget(cmd_badge)
-        
-        layout.addLayout(status_layout)
-        
-        # Windows-style window controls
-        window_controls = QHBoxLayout()
-        window_controls.setSpacing(4)
-        
-        self.minimize_btn = self.create_window_button("─", self.show_minimized)
-        self.maximize_btn = self.create_window_button("□", self.toggle_maximize)
-        self.close_btn = self.create_window_button("✕", self.close_window)
-        
-        window_controls.addWidget(self.minimize_btn)
-        window_controls.addWidget(self.maximize_btn)
-        window_controls.addWidget(self.close_btn)
-        
-        layout.addLayout(window_controls)
+
+        right_layout.addWidget(status_label)
+        right_layout.addWidget(settings_btn)
+        right_layout.addWidget(expand_btn)
+        layout.addLayout(right_layout)
         
         self.parent_window = parent
         self.start_pos = QPoint()
+        self.close_btn.clicked.connect(self.close_window)
+        self.minimize_btn.clicked.connect(self.show_minimized)
+        self.maximize_btn.clicked.connect(self.toggle_maximize)
         
     def create_window_button(self, symbol, callback):
         btn = QPushButton(symbol)
@@ -201,7 +240,7 @@ class Header(QWidget):
         
         current_time = datetime.now().strftime("%I:%M %p")
         time_label = QLabel(current_time)
-        time_label.setStyleSheet("color: #888888; font-size: 18px; border: none; background: transparent;")
+        time_label.setStyleSheet("color: #707a8d; font-size: 15px; border: none; background: transparent;")
         
         time_layout.addWidget(clock_label)
         time_layout.addWidget(time_label)
@@ -221,9 +260,9 @@ class Header(QWidget):
         greeting_label = QLabel(greeting)
         greeting_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
-                font-size: 36px;
-                font-weight: bold;
+                color: #273349;
+                font-size: 32px;
+                font-weight: 700;
                 border: none;
                 background: transparent;
             }
@@ -247,20 +286,20 @@ class Timeline(QWidget):
         today_label = QLabel("TODAY")
         today_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
-                font-size: 16px;
-                font-weight: 600;
+                color: #465067;
+                font-size: 14px;
+                font-weight: 700;
                 letter-spacing: 1px;
                 border: none;
                 background: transparent;
             }
         """)
         
-        progress_label = QLabel("75% OF DAY")
+        progress_label = QLabel("5h planned")
         progress_label.setStyleSheet("""
             QLabel {
-                color: #888888;
-                font-size: 13px;
+                color: #7c8697;
+                font-size: 12px;
                 font-weight: 500;
                 letter-spacing: 1px;
                 border: none;
@@ -285,9 +324,9 @@ class Timeline(QWidget):
         track_container.setFixedHeight(100)
         track_container.setStyleSheet("""
             QWidget {
-                background-color: rgba(30, 30, 30, 0.6);
-                border-radius: 20px;
-                border: 1px solid rgba(255, 255, 255, 0.08);
+                background-color: rgba(255, 255, 255, 0.78);
+                border-radius: 14px;
+                border: 1px solid #e3e7ef;
             }
         """)
         
@@ -325,7 +364,7 @@ class Timeline(QWidget):
         current_time_indicator.setFixedSize(2, 100)
         current_time_indicator.setStyleSheet("""
             QFrame {
-                background-color: #FF3B30;
+                background-color: #f44d4d;
                 border-radius: 1px;
             }
         """)
@@ -340,7 +379,7 @@ class Timeline(QWidget):
         times = ["6am", "9am", "12pm", "3pm", "6pm", "9pm"]
         for time in times:
             label = QLabel(time)
-            label.setStyleSheet("color: #666666; font-size: 12px; border: none; background: transparent;")
+            label.setStyleSheet("color: #9099ab; font-size: 11px; border: none; background: transparent;")
             time_labels.addWidget(label)
             time_labels.addStretch()
         
@@ -368,8 +407,8 @@ class Timeline(QWidget):
             label = QLabel(text)
             label.setStyleSheet("""
                 QLabel {
-                    color: #ffffff;
-                    font-size: 11px;
+                color: #2f3a52;
+                font-size: 10px;
                     font-weight: 600;
                     border: none;
                     background: transparent;
@@ -403,9 +442,9 @@ class StatCards(QWidget):
         card.setMinimumHeight(120)
         card.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
+                background-color: #ffffff;
                 border-radius: 12px;
-                border: 1px solid rgba(255, 255, 255, 0.08);
+                border: 1px solid #e1e6ef;
             }
         """)
         
@@ -416,8 +455,8 @@ class StatCards(QWidget):
         subtitle_label = QLabel(subtitle)
         subtitle_label.setStyleSheet("""
             QLabel {
-                color: #888888;
-                font-size: 14px;
+                color: #8791a4;
+                font-size: 13px;
                 font-weight: 500;
                 border: none;
                 background: transparent;
@@ -427,9 +466,9 @@ class StatCards(QWidget):
         main_label = QLabel(main_text)
         main_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
-                font-size: 32px;
-                font-weight: bold;
+                color: #273349;
+                font-size: 30px;
+                font-weight: 700;
                 border: none;
                 background: transparent;
             }
@@ -450,8 +489,8 @@ class ScheduleItem(QWidget):
         wrapper = QFrame()
         wrapper.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                background-color: #ffffff;
+                border: 1px solid #e2e6ef;
                 border-radius: 10px;
             }
         """)
@@ -477,8 +516,8 @@ class ScheduleItem(QWidget):
         title_label = QLabel(title)
         title_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
-                font-size: 16px;
+                color: #2f3a52;
+                font-size: 15px;
                 font-weight: 500;
                 border: none;
                 background: transparent;
@@ -488,8 +527,8 @@ class ScheduleItem(QWidget):
         time_label = QLabel(time_range)
         time_label.setStyleSheet("""
             QLabel {
-                color: #888888;
-                font-size: 14px;
+                color: #8892a5;
+                font-size: 13px;
                 border: none;
                 background: transparent;
             }
@@ -502,7 +541,7 @@ class ScheduleItem(QWidget):
         checkmark = QLabel("✓")
         checkmark.setStyleSheet("""
             QLabel {
-                color: #444444;
+                color: #b7c0d1;
                 font-size: 18px;
                 font-weight: bold;
                 border: none;
@@ -531,12 +570,12 @@ class Schedule(QWidget):
         layout.setSpacing(10)
         
         # Header
-        schedule_label = QLabel("SCHEDULE")
+        schedule_label = QLabel("OPEN")
         schedule_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
-                font-size: 16px;
-                font-weight: 600;
+                color: #5f697d;
+                font-size: 13px;
+                font-weight: 700;
                 letter-spacing: 1px;
                 border: none;
                 background: transparent;
@@ -547,10 +586,10 @@ class Schedule(QWidget):
         
         # Schedule items
         items = [
-            ("Deep work", "9am - 12pm", "#007AFF"),
-            ("Lunch", "12pm - 1pm", "#FF9500"),
-            ("Bug fixes", "2pm - 3:30pm", "#FF3B30"),
-            ("Documentation", "4pm - 5pm", "#34C759")
+            ("App Working Properly (Physical/Digital)", "5h 29m  • 1h 7m", "#7f8ca3"),
+            ("Landing Page", "47m  • 3m", "#7f8ca3"),
+            ("CLOUD AI working", "8h 21m  • 1h 20m", "#7f8ca3"),
+            ("UI fixes", "35m  • 9m", "#7f8ca3")
         ]
         
         for title, time_range, color in items:
@@ -561,7 +600,7 @@ class Schedule(QWidget):
 class NavigationBar(QWidget):
     def __init__(self, navigate_callback=None, parent=None):
         super().__init__(parent)
-        self.setFixedHeight(50)
+        self.setFixedHeight(46)
         self.setStyleSheet("background-color: transparent;")
         self.navigate_callback = navigate_callback
         self.nav_buttons = {}  # Store button references for updating active state
@@ -574,15 +613,15 @@ class NavigationBar(QWidget):
         dock = QFrame()
         dock.setStyleSheet("""
             QFrame {
-                background-color: #161b22;
-                border-radius: 16px;
-                border: 1px solid #30363d;
+                background-color: rgba(255, 255, 255, 0.78);
+                border-radius: 12px;
+                border: 1px solid #dfe4ee;
             }
         """)
         
         dock_layout = QHBoxLayout(dock)
-        dock_layout.setContentsMargins(8, 6, 8, 6)
-        dock_layout.setSpacing(6)
+        dock_layout.setContentsMargins(8, 4, 8, 4)
+        dock_layout.setSpacing(5)
         
         # Icons with SVG paths - Home is now active
         icons = [
@@ -599,10 +638,10 @@ class NavigationBar(QWidget):
             btn = QPushButton()
             try:
                 btn.setIcon(QIcon(icon_path))
-                btn.setIconSize(QSize(20, 20))
-                # Colorize icon to white
+                btn.setIconSize(QSize(17, 17))
+                # Colorize icon for light theme visibility
                 colorize_effect = QGraphicsColorizeEffect()
-                colorize_effect.setColor(Qt.GlobalColor.white)
+                colorize_effect.setColor(QColor("#5d687d"))
                 btn.setGraphicsEffect(colorize_effect)
             except:
                 # Fallback if SVG doesn't exist
@@ -611,13 +650,13 @@ class NavigationBar(QWidget):
             if active:
                 btn.setStyleSheet("""
                     QPushButton {
-                        background-color: #238636;
+                        background-color: #eef3ff;
                         border: none;
-                        padding: 6px;
-                        border-radius: 6px;
+                        padding: 5px;
+                        border-radius: 5px;
                     }
                     QPushButton:hover {
-                        background-color: #2ea043;
+                        background-color: #e2eaf8;
                     }
                 """)
             else:
@@ -625,14 +664,14 @@ class NavigationBar(QWidget):
                     QPushButton {
                         background-color: transparent;
                         border: none;
-                        padding: 6px;
-                        border-radius: 6px;
+                        padding: 5px;
+                        border-radius: 5px;
                     }
                     QPushButton:hover {
-                        background-color: rgba(255, 255, 255, 0.1);
+                        background-color: #f3f6fb;
                     }
                 """)
-            btn.setFixedSize(36, 36)
+            btn.setFixedSize(30, 30)
             
             # Connect button to navigation callback
             if page_name and self.navigate_callback:
@@ -655,11 +694,11 @@ class NavigationBar(QWidget):
                 QPushButton {
                     background-color: transparent;
                     border: none;
-                    padding: 6px;
-                    border-radius: 6px;
+                    padding: 5px;
+                    border-radius: 5px;
                 }
                 QPushButton:hover {
-                    background-color: rgba(255, 255, 255, 0.1);
+                    background-color: #f3f6fb;
                 }
             """)
         
@@ -667,13 +706,13 @@ class NavigationBar(QWidget):
         if page_name in self.nav_buttons:
             self.nav_buttons[page_name].setStyleSheet("""
                 QPushButton {
-                    background-color: #238636;
+                    background-color: #eef3ff;
                     border: none;
-                    padding: 6px;
-                    border-radius: 6px;
+                    padding: 5px;
+                    border-radius: 5px;
                 }
                 QPushButton:hover {
-                    background-color: #2ea043;
+                    background-color: #e2eaf8;
                 }
             """)
 
@@ -692,22 +731,28 @@ class MainWindow(QMainWindow):
         
         self.central_widget.setStyleSheet("""
             QWidget {
-                background-color: #0d1117;
+                background-color: #f3f6fb;
                 border-radius: 12px;
             }
         """)
         
         main_layout = QVBoxLayout(self.central_widget)
-        main_layout.setContentsMargins(40, 25, 40, 25)
-        main_layout.setSpacing(25)
+        main_layout.setContentsMargins(18, 12, 18, 12)
+        main_layout.setSpacing(10)
         
         # Title bar
         self.title_bar = TitleBar(self)
         main_layout.addWidget(self.title_bar)
         
         # Content area with stacked widget for page switching
-        content = QWidget()
-        content.setStyleSheet("background-color: transparent;")
+        content = QFrame()
+        content.setStyleSheet("""
+            QFrame {
+                background-color: rgba(255, 255, 255, 0.62);
+                border: 1px solid #dfe5f0;
+                border-radius: 14px;
+            }
+        """)
         content_layout = QVBoxLayout(content)
         content_layout.setContentsMargins(0, 0, 0, 0)
         content_layout.setSpacing(0)
@@ -720,8 +765,8 @@ class MainWindow(QMainWindow):
         self.dashboard_page = QWidget()
         self.dashboard_page.setStyleSheet("background-color: transparent;")
         dashboard_layout = QVBoxLayout(self.dashboard_page)
-        dashboard_layout.setContentsMargins(0, 0, 0, 0)
-        dashboard_layout.setSpacing(25)
+        dashboard_layout.setContentsMargins(14, 10, 14, 10)
+        dashboard_layout.setSpacing(14)
         
         # Header
         self.header = Header()
@@ -771,11 +816,16 @@ class MainWindow(QMainWindow):
         
         content_layout.addWidget(self.stacked_widget)
         
-        main_layout.addWidget(content)
+        main_layout.addWidget(content, 1)
         
         # Navigation bar with navigation callbacks
         self.nav_bar = NavigationBar(self.navigate_to_page)
-        main_layout.addWidget(self.nav_bar)
+        self.nav_bar.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+            }
+        """)
+        main_layout.addWidget(self.nav_bar, 0, Qt.AlignmentFlag.AlignHCenter)
         
         self.current_page = "dashboard"
         

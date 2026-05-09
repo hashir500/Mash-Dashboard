@@ -1,17 +1,22 @@
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, 
                              QPushButton, QFrame, QScrollArea, QGraphicsColorizeEffect)
 from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtGui import QIcon
+from PyQt6.QtGui import QIcon, QColor
 
 
 class HabitsPage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setStyleSheet("background-color: transparent;")
+        self.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+                color: #1f2a3d;
+            }
+        """)
         
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 16, 0, 16)
-        layout.setSpacing(20)
+        layout.setContentsMargins(10, 8, 10, 10)
+        layout.setSpacing(10)
         
         # Header
         header = self.create_header()
@@ -41,9 +46,9 @@ class HabitsPage(QWidget):
         title = QLabel("Habits")
         title.setStyleSheet("""
             QLabel {
-                color: #ffffff;
-                font-size: 28px;
-                font-weight: bold;
+                color: #2d394f;
+                font-size: 22px;
+                font-weight: 700;
                 border: none;
                 background: transparent;
             }
@@ -52,8 +57,8 @@ class HabitsPage(QWidget):
         stats = QLabel("4/5 done today · 2 active")
         stats.setStyleSheet("""
             QLabel {
-                color: #888888;
-                font-size: 14px;
+                color: #7f899c;
+                font-size: 12px;
                 border: none;
                 background: transparent;
             }
@@ -108,9 +113,9 @@ class HabitsPage(QWidget):
         card = QFrame()
         card.setStyleSheet("""
             QFrame {
-                background-color: #161b22;
-                border: 1px solid #30363d;
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.82);
+                border: 1px solid #dbe2ee;
+                border-radius: 10px;
             }
         """)
         
@@ -132,7 +137,7 @@ class HabitsPage(QWidget):
         title_label = QLabel(title)
         title_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2d394f;
                 font-size: 16px;
                 font-weight: bold;
                 border: none;
@@ -148,7 +153,7 @@ class HabitsPage(QWidget):
         schedule_label = QLabel(schedule)
         schedule_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 13px;
                 border: none;
                 background: transparent;
@@ -182,16 +187,16 @@ class HabitsPage(QWidget):
         snooze_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         snooze_btn.setStyleSheet("""
             QPushButton {
-                background-color: rgba(255, 255, 255, 0.1);
-                color: #888888;
+                background-color: rgba(95, 107, 130, 0.12);
+                color: #5f6b82;
                 border: none;
                 border-radius: 8px;
                 padding: 8px 16px;
                 font-size: 13px;
             }
             QPushButton:hover {
-                background-color: rgba(255, 255, 255, 0.15);
-                color: #ffffff;
+                background-color: #eef2f9;
+                color: #2d394f;
             }
         """)
         
@@ -199,16 +204,16 @@ class HabitsPage(QWidget):
         skip_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         skip_btn.setStyleSheet("""
             QPushButton {
-                background-color: rgba(255, 255, 255, 0.1);
-                color: #888888;
+                background-color: rgba(95, 107, 130, 0.12);
+                color: #5f6b82;
                 border: none;
                 border-radius: 8px;
                 padding: 8px 16px;
                 font-size: 13px;
             }
             QPushButton:hover {
-                background-color: rgba(255, 255, 255, 0.15);
-                color: #ffffff;
+                background-color: #eef2f9;
+                color: #2d394f;
             }
         """)
         
@@ -216,16 +221,16 @@ class HabitsPage(QWidget):
         reschedule_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         reschedule_btn.setStyleSheet("""
             QPushButton {
-                background-color: rgba(255, 255, 255, 0.1);
-                color: #888888;
+                background-color: rgba(95, 107, 130, 0.12);
+                color: #5f6b82;
                 border: none;
                 border-radius: 8px;
                 padding: 8px 16px;
                 font-size: 13px;
             }
             QPushButton:hover {
-                background-color: rgba(255, 255, 255, 0.15);
-                color: #ffffff;
+                background-color: #eef2f9;
+                color: #2d394f;
             }
         """)
         
@@ -276,20 +281,20 @@ class HabitsPage(QWidget):
             left_arrow.setIcon(QIcon("assets/chevron-left.svg"))
             left_arrow.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             left_arrow.setGraphicsEffect(colorize_effect)
         except:
             left_arrow.setText("<")
         left_arrow.setStyleSheet("""
             QPushButton {
-                background-color: rgba(255, 255, 255, 0.1);
+                background-color: rgba(95, 107, 130, 0.12);
                 border: none;
                 border-radius: 8px;
-                color: #ffffff;
+                color: #2d394f;
                 font-size: 16px;
             }
             QPushButton:hover {
-                background-color: rgba(255, 255, 255, 0.15);
+                background-color: #eef2f9;
             }
         """)
         left_arrow.setFixedSize(32, 32)
@@ -298,7 +303,7 @@ class HabitsPage(QWidget):
         title = QLabel("This Week")
         title.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2d394f;
                 font-size: 16px;
                 font-weight: 500;
                 border: none;
@@ -313,20 +318,20 @@ class HabitsPage(QWidget):
             right_arrow.setIcon(QIcon("assets/chevron-right.svg"))
             right_arrow.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             right_arrow.setGraphicsEffect(colorize_effect)
         except:
             right_arrow.setText(">")
         right_arrow.setStyleSheet("""
             QPushButton {
-                background-color: rgba(255, 255, 255, 0.1);
+                background-color: rgba(95, 107, 130, 0.12);
                 border: none;
                 border-radius: 8px;
-                color: #ffffff;
+                color: #2d394f;
                 font-size: 16px;
             }
             QPushButton:hover {
-                background-color: rgba(255, 255, 255, 0.15);
+                background-color: #eef2f9;
             }
         """)
         right_arrow.setFixedSize(32, 32)
@@ -351,7 +356,7 @@ class HabitsPage(QWidget):
         habit_label = QLabel("Habit")
         habit_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 12px;
                 font-weight: 500;
                 border: none;
@@ -371,7 +376,7 @@ class HabitsPage(QWidget):
                 day_label.setStyleSheet("""
                     QLabel {
                         background-color: rgba(0, 122, 255, 0.2);
-                        color: #ffffff;
+                        color: #234058;
                         padding: 4px 10px;
                         border-radius: 10px;
                         font-size: 12px;
@@ -382,7 +387,7 @@ class HabitsPage(QWidget):
             else:
                 day_label.setStyleSheet("""
                     QLabel {
-                        color: #888888;
+                        color: #7f899c;
                         font-size: 12px;
                         font-weight: 500;
                         border: none;
@@ -411,12 +416,12 @@ class HabitsPage(QWidget):
                 border: none;
             }
             QScrollBar::handle:vertical {
-                background-color: rgba(255, 255, 255, 0.2);
+                background-color: rgba(113, 126, 149, 0.28);
                 border-radius: 3px;
                 min-height: 20px;
             }
             QScrollBar::handle:vertical:hover {
-                background-color: rgba(255, 255, 255, 0.3);
+                background-color: rgba(113, 126, 149, 0.4);
             }
             QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
                 height: 0px;
@@ -457,7 +462,7 @@ class HabitsPage(QWidget):
         row.setStyleSheet("""
             QWidget {
                 background-color: transparent;
-                border-bottom: 1px solid #30363d;
+                border-bottom: 1px solid #e3e8f1;
             }
         """)
         row.setFixedHeight(60)
@@ -484,7 +489,7 @@ class HabitsPage(QWidget):
         icon_label.setStyleSheet("border: none; background: transparent;")
         icon_label.setPixmap(QIcon(icon_path).pixmap(20, 20))
         colorize_effect = QGraphicsColorizeEffect()
-        colorize_effect.setColor(Qt.GlobalColor.white)
+        colorize_effect.setColor(Qt.GlobalColor.black)
         icon_label.setGraphicsEffect(colorize_effect)
         
         icon_layout.addWidget(icon_label)
@@ -496,7 +501,7 @@ class HabitsPage(QWidget):
         title_label = QLabel(title)
         title_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2f3a50;
                 font-size: 14px;
                 font-weight: 500;
                 border: none;
@@ -521,7 +526,7 @@ class HabitsPage(QWidget):
         active_label = QLabel(active)
         active_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 11px;
                 border: none;
                 background: transparent;
@@ -589,7 +594,7 @@ class HabitsPage(QWidget):
             checkbox.setStyleSheet("""
                 QPushButton {
                     background-color: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border: 1px solid #dbe2ee;
                     border-radius: 8px;
                 }
             """)
@@ -605,7 +610,7 @@ class HabitsPage(QWidget):
             checkbox.setStyleSheet("""
                 QPushButton {
                     background-color: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border: 1px solid #dbe2ee;
                     border-radius: 8px;
                 }
             """)

@@ -8,11 +8,16 @@ from PyQt6.QtGui import QIcon
 class ThinkPage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setStyleSheet("background-color: transparent;")
+        self.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+                color: #1f2a3d;
+            }
+        """)
         
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 16, 0, 16)
-        layout.setSpacing(20)
+        layout.setContentsMargins(10, 8, 10, 10)
+        layout.setSpacing(10)
         
         # Header
         header = self.create_header()
@@ -36,7 +41,7 @@ class ThinkPage(QWidget):
         
         layout = QHBoxLayout(header)
         layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(12)
+        layout.setSpacing(8)
         
         # Left side: Title and subtitle
         left_layout = QVBoxLayout()
@@ -45,18 +50,18 @@ class ThinkPage(QWidget):
         title = QLabel("Think")
         title.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2d394f;
                 font-size: 24px;
-                font-weight: bold;
+                font-weight: 700;
                 border: none;
                 background: transparent;
             }
         """)
         
-        subtitle = QLabel("6 thoughts")
+        subtitle = QLabel("Today")
         subtitle.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 14px;
                 border: none;
                 background: transparent;
@@ -76,7 +81,7 @@ class ThinkPage(QWidget):
             filter_btn.setIcon(QIcon("assets/filter.svg"))
             filter_btn.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             filter_btn.setGraphicsEffect(colorize_effect)
         except:
             filter_btn.setText("⚡")
@@ -84,7 +89,7 @@ class ThinkPage(QWidget):
             QPushButton {
                 background-color: transparent;
                 border: none;
-                color: #ffffff;
+                color: #647189;
             }
         """)
         filter_btn.setFixedSize(32, 32)
@@ -95,7 +100,7 @@ class ThinkPage(QWidget):
             search_btn.setIcon(QIcon("assets/search.svg"))
             search_btn.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             search_btn.setGraphicsEffect(colorize_effect)
         except:
             search_btn.setText("🔍")
@@ -103,7 +108,7 @@ class ThinkPage(QWidget):
             QPushButton {
                 background-color: transparent;
                 border: none;
-                color: #ffffff;
+                color: #647189;
             }
         """)
         search_btn.setFixedSize(32, 32)
@@ -126,10 +131,9 @@ class ThinkPage(QWidget):
         layout.setSpacing(8)
         
         chips = [
-            ("All 6", True, "assets/list.svg"),
-            ("Text 4", False, "assets/text.svg"),
-            ("Images 1", False, "assets/image.svg"),
-            ("Links 1", False, "assets/link.svg")
+            ("All", True, "assets/list.svg"),
+            ("Unassigned", False, "assets/text.svg"),
+            ("Taby", False, "assets/image.svg")
         ]
         
         for text, active, icon_path in chips:
@@ -138,26 +142,26 @@ class ThinkPage(QWidget):
             if active:
                 chip.setStyleSheet("""
                     QPushButton {
-                        background-color: rgba(255, 255, 255, 0.15);
-                        color: #ffffff;
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                        padding: 6px 16px;
-                        border-radius: 16px;
-                        font-size: 13px;
+                        background-color: rgba(255, 255, 255, 0.78);
+                        color: #344159;
+                        border: 1px solid #d9e0ec;
+                        padding: 5px 13px;
+                        border-radius: 14px;
+                        font-size: 12px;
                     }
                 """)
             else:
                 chip.setStyleSheet("""
                     QPushButton {
-                        background-color: rgba(255, 255, 255, 0.05);
-                        color: #ffffff;
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                        padding: 6px 16px;
-                        border-radius: 16px;
-                        font-size: 13px;
+                        background-color: rgba(255, 255, 255, 0.84);
+                        color: #647189;
+                        border: 1px solid #d9e0ec;
+                        padding: 5px 13px;
+                        border-radius: 14px;
+                        font-size: 12px;
                     }
                     QPushButton:hover {
-                        background-color: rgba(255, 255, 255, 0.1);
+                        background-color: #f2f6fc;
                     }
                 """)
             layout.addWidget(chip)
@@ -182,12 +186,12 @@ class ThinkPage(QWidget):
                 border: none;
             }
             QScrollBar::handle:vertical {
-                background-color: rgba(255, 255, 255, 0.2);
+                background-color: rgba(113, 126, 149, 0.28);
                 border-radius: 3px;
                 min-height: 20px;
             }
             QScrollBar::handle:vertical:hover {
-                background-color: rgba(255, 255, 255, 0.3);
+                background-color: rgba(113, 126, 149, 0.4);
             }
             QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
                 height: 0px;
@@ -205,7 +209,7 @@ class ThinkPage(QWidget):
         
         container_layout = QVBoxLayout(container)
         container_layout.setContentsMargins(0, 0, 0, 0)
-        container_layout.setSpacing(15)
+        container_layout.setSpacing(10)
         
         # Sample thoughts
         thoughts = [
@@ -231,15 +235,15 @@ class ThinkPage(QWidget):
         item = QFrame()
         item.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #e0e6f0;
+                border-radius: 10px;
             }
         """)
         
         layout = QHBoxLayout(item)
-        layout.setContentsMargins(16, 16, 16, 16)
-        layout.setSpacing(16)
+        layout.setContentsMargins(12, 10, 12, 10)
+        layout.setSpacing(10)
         
         # Bullet point circle
         bullet = QLabel()
@@ -247,7 +251,7 @@ class ThinkPage(QWidget):
         bullet.setStyleSheet("""
             QLabel {
                 background-color: transparent;
-                border: 2px solid #666666;
+                border: 2px solid #c5ccda;
                 border-radius: 4px;
             }
         """)
@@ -261,7 +265,7 @@ class ThinkPage(QWidget):
             content_label = QLabel(content)
             content_label.setStyleSheet("""
                 QLabel {
-                    color: #5AC8FA;
+                    color: #3a74ff;
                     font-size: 15px;
                     border: none;
                     background: transparent;
@@ -271,7 +275,7 @@ class ThinkPage(QWidget):
             content_label = QLabel(content)
             content_label.setStyleSheet("""
                 QLabel {
-                    color: #ffffff;
+                    color: #2f3a50;
                     font-size: 15px;
                     border: none;
                     background: transparent;
@@ -282,7 +286,7 @@ class ThinkPage(QWidget):
         timestamp_label = QLabel(timestamp)
         timestamp_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #8a94a7;
                 font-size: 12px;
                 border: none;
                 background: transparent;
@@ -303,14 +307,14 @@ class ThinkPage(QWidget):
         composer.setFixedHeight(80)
         composer.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.84);
+                border: 1px solid #dde4ef;
+                border-radius: 10px;
             }
         """)
         
         layout = QHBoxLayout(composer)
-        layout.setContentsMargins(16, 12, 16, 12)
+        layout.setContentsMargins(12, 10, 12, 10)
         layout.setSpacing(12)
         
         # Paperclip icon
@@ -320,7 +324,7 @@ class ThinkPage(QWidget):
             paperclip_btn.setIcon(QIcon("assets/paperclip.svg"))
             paperclip_btn.setIconSize(QSize(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             paperclip_btn.setGraphicsEffect(colorize_effect)
         except:
             paperclip_btn.setText("📎")
@@ -328,7 +332,7 @@ class ThinkPage(QWidget):
             QPushButton {
                 background-color: transparent;
                 border: none;
-                color: #ffffff;
+                color: #4c5870;
             }
         """)
         paperclip_btn.setFixedSize(32, 32)
@@ -341,12 +345,12 @@ class ThinkPage(QWidget):
             QTextEdit {
                 background-color: transparent;
                 border: none;
-                color: #ffffff;
+                color: #334056;
                 font-size: 14px;
                 padding: 4px;
             }
             QTextEdit::placeholder {
-                color: #666666;
+                color: #8d97ab;
             }
         """)
         
@@ -354,7 +358,7 @@ class ThinkPage(QWidget):
         helper_text = QLabel("Enter · ⇧ Newline · ⌘V Image")
         helper_text.setStyleSheet("""
             QLabel {
-                color: #666666;
+                color: #7f899c;
                 font-size: 11px;
                 border: none;
                 background: transparent;

@@ -7,11 +7,16 @@ from PyQt6.QtGui import QIcon
 class WorkspacesPage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setStyleSheet("background-color: transparent;")
+        self.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+                color: #1f2a3d;
+            }
+        """)
         
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 16, 0, 16)
-        layout.setSpacing(20)
+        layout.setContentsMargins(10, 8, 10, 10)
+        layout.setSpacing(10)
         
         # Header
         header = self.create_header()
@@ -45,9 +50,9 @@ class WorkspacesPage(QWidget):
         title = QLabel("Workspaces")
         title.setStyleSheet("""
             QLabel {
-                color: #ffffff;
-                font-size: 28px;
-                font-weight: bold;
+                color: #2d394f;
+                font-size: 22px;
+                font-weight: 700;
                 border: none;
                 background: transparent;
             }
@@ -56,8 +61,8 @@ class WorkspacesPage(QWidget):
         subtitle = QLabel("Launch your apps, tabs & folders together")
         subtitle.setStyleSheet("""
             QLabel {
-                color: #888888;
-                font-size: 14px;
+                color: #7f899c;
+                font-size: 12px;
                 border: none;
                 background: transparent;
             }
@@ -94,9 +99,9 @@ class WorkspacesPage(QWidget):
         container.setFixedHeight(60)
         container.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border: 1px solid #dbe2ee;
+                border-radius: 10px;
             }
         """)
         
@@ -143,25 +148,25 @@ class WorkspacesPage(QWidget):
             btn.setStyleSheet("""
                 QPushButton {
                     background-color: rgba(0, 122, 255, 0.2);
-                    color: #ffffff;
-                    border: 1px solid rgba(0, 122, 255, 0.5);
-                    border-radius: 16px;
-                    padding: 6px 16px;
-                    font-size: 14px;
+                    color: #234058;
+                    border: 1px solid rgba(0, 122, 255, 0.25);
+                    border-radius: 14px;
+                    padding: 5px 12px;
+                    font-size: 12px;
                 }
             """)
         else:
             btn.setStyleSheet("""
                 QPushButton {
-                    background-color: rgba(255, 255, 255, 0.05);
-                    color: #ffffff;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    border-radius: 16px;
-                    padding: 6px 16px;
-                    font-size: 14px;
+                    background-color: rgba(255, 255, 255, 0.72);
+                    color: #5f6b82;
+                    border: 1px solid #dbe2ee;
+                    border-radius: 14px;
+                    padding: 5px 12px;
+                    font-size: 12px;
                 }
                 QPushButton:hover {
-                    background-color: rgba(255, 255, 255, 0.1);
+                    background-color: #f3f6fb;
                 }
             """)
         
@@ -172,9 +177,9 @@ class WorkspacesPage(QWidget):
         card.setFixedHeight(130)
         card.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.82);
+                border: 1px solid #dbe2ee;
+                border-radius: 10px;
             }
         """)
         
@@ -189,7 +194,7 @@ class WorkspacesPage(QWidget):
         title = QLabel("Coding")
         title.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2d394f;
                 font-size: 20px;
                 font-weight: bold;
                 border: none;
@@ -221,7 +226,7 @@ class WorkspacesPage(QWidget):
             edit_btn.setIcon(QIcon("assets/edit.svg"))
             edit_btn.setIconSize(QSize(16, 16))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             edit_btn.setGraphicsEffect(colorize_effect)
         except:
             edit_btn.setText("✎")
@@ -244,7 +249,7 @@ class WorkspacesPage(QWidget):
             delete_btn.setIcon(QIcon("assets/trash.svg"))
             delete_btn.setIconSize(QSize(16, 16))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             delete_btn.setGraphicsEffect(colorize_effect)
         except:
             delete_btn.setText("🗑")
@@ -287,7 +292,7 @@ class WorkspacesPage(QWidget):
         subtitle = QLabel("Full dev environment with editor, terminal, and docs")
         subtitle.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 14px;
                 border: none;
                 background: transparent;
@@ -310,7 +315,7 @@ class WorkspacesPage(QWidget):
         header = QLabel("ITEMS (5)")
         header.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 13px;
                 font-weight: 500;
                 border: none;
@@ -350,9 +355,9 @@ class WorkspacesPage(QWidget):
         card = QFrame()
         card.setStyleSheet("""
             QFrame {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border: 1px solid #dbe2ee;
+                border-radius: 10px;
             }
         """)
         
@@ -379,7 +384,7 @@ class WorkspacesPage(QWidget):
         try:
             icon_label.setPixmap(QIcon("assets/file.svg").pixmap(20, 20))
             colorize_effect = QGraphicsColorizeEffect()
-            colorize_effect.setColor(Qt.GlobalColor.white)
+            colorize_effect.setColor(Qt.GlobalColor.black)
             icon_label.setGraphicsEffect(colorize_effect)
         except:
             icon_label.setText("📄")
@@ -393,7 +398,7 @@ class WorkspacesPage(QWidget):
         title_label = QLabel(title)
         title_label.setStyleSheet("""
             QLabel {
-                color: #ffffff;
+                color: #2f3a50;
                 font-size: 14px;
                 font-weight: 500;
                 border: none;
@@ -404,7 +409,7 @@ class WorkspacesPage(QWidget):
         subtitle_label = QLabel(subtitle)
         subtitle_label.setStyleSheet("""
             QLabel {
-                color: #888888;
+                color: #7f899c;
                 font-size: 12px;
                 border: none;
                 background: transparent;
@@ -422,7 +427,7 @@ class WorkspacesPage(QWidget):
         badge.setStyleSheet("""
             QLabel {
                 background-color: rgba(255, 255, 255, 0.1);
-                color: #888888;
+                color: #6f7a90;
                 padding: 2px 8px;
                 border-radius: 6px;
                 font-size: 10px;
@@ -434,13 +439,13 @@ class WorkspacesPage(QWidget):
         close_btn.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
-                color: #888888;
+                color: #7f899c;
                 border: none;
                 font-size: 16px;
                 padding: 0px;
             }
             QPushButton:hover {
-                color: #ffffff;
+                color: #2d394f;
             }
         """)
         close_btn.setFixedSize(20, 20)
